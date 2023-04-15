@@ -8,17 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		2C08520E29EA874C00A11890 /* PDFinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C08520D29EA874C00A11890 /* PDFinderApp.swift */; };
-		2C08521029EA874C00A11890 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C08520F29EA874C00A11890 /* ContentView.swift */; };
+		2C08521029EA874C00A11890 /* ParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C08520F29EA874C00A11890 /* ParentView.swift */; };
 		2C08521229EA874F00A11890 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C08521129EA874F00A11890 /* Assets.xcassets */; };
 		2C08521529EA874F00A11890 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C08521429EA874F00A11890 /* Preview Assets.xcassets */; };
+		2C08521D29EA879D00A11890 /* NavVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C08521C29EA879D00A11890 /* NavVM.swift */; };
+		2C08522129EA887C00A11890 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C08522029EA887C00A11890 /* ScanView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2C08520A29EA874C00A11890 /* PDFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C08520D29EA874C00A11890 /* PDFinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFinderApp.swift; sourceTree = "<group>"; };
-		2C08520F29EA874C00A11890 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2C08520F29EA874C00A11890 /* ParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentView.swift; sourceTree = "<group>"; };
 		2C08521129EA874F00A11890 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C08521429EA874F00A11890 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2C08521C29EA879D00A11890 /* NavVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavVM.swift; sourceTree = "<group>"; };
+		2C08522029EA887C00A11890 /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +55,9 @@
 		2C08520C29EA874C00A11890 /* PDFinder */ = {
 			isa = PBXGroup;
 			children = (
-				2C08520D29EA874C00A11890 /* PDFinderApp.swift */,
-				2C08520F29EA874C00A11890 /* ContentView.swift */,
-				2C08521129EA874F00A11890 /* Assets.xcassets */,
 				2C08521329EA874F00A11890 /* Preview Content */,
+				2C08521F29EA886F00A11890 /* Scan */,
+				2C08521B29EA876200A11890 /* Common */,
 			);
 			path = PDFinder;
 			sourceTree = "<group>";
@@ -65,6 +68,25 @@
 				2C08521429EA874F00A11890 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2C08521B29EA876200A11890 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2C08520D29EA874C00A11890 /* PDFinderApp.swift */,
+				2C08520F29EA874C00A11890 /* ParentView.swift */,
+				2C08521C29EA879D00A11890 /* NavVM.swift */,
+				2C08521129EA874F00A11890 /* Assets.xcassets */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		2C08521F29EA886F00A11890 /* Scan */ = {
+			isa = PBXGroup;
+			children = (
+				2C08522029EA887C00A11890 /* ScanView.swift */,
+			);
+			path = Scan;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +159,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C08521029EA874C00A11890 /* ContentView.swift in Sources */,
+				2C08521D29EA879D00A11890 /* NavVM.swift in Sources */,
+				2C08522129EA887C00A11890 /* ScanView.swift in Sources */,
+				2C08521029EA874C00A11890 /* ParentView.swift in Sources */,
 				2C08520E29EA874C00A11890 /* PDFinderApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

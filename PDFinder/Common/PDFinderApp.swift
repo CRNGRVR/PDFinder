@@ -11,7 +11,7 @@ import SwiftUI
 struct PDFinderApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ParentView()
         }
     }
 }
