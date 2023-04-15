@@ -6,10 +6,16 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct ScanView: View {
+    
+    @ObservedObject var scanVM = ScanVM()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            
+        }
     }
 }
 

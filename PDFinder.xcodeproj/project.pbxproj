@@ -13,6 +13,7 @@
 		2C08521529EA874F00A11890 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C08521429EA874F00A11890 /* Preview Assets.xcassets */; };
 		2C08521D29EA879D00A11890 /* NavVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C08521C29EA879D00A11890 /* NavVM.swift */; };
 		2C08522129EA887C00A11890 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C08522029EA887C00A11890 /* ScanView.swift */; };
+		2C08522329EA895900A11890 /* ScanVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C08522229EA895900A11890 /* ScanVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		2C08521429EA874F00A11890 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2C08521C29EA879D00A11890 /* NavVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavVM.swift; sourceTree = "<group>"; };
 		2C08522029EA887C00A11890 /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
+		2C08522229EA895900A11890 /* ScanVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				2C08522029EA887C00A11890 /* ScanView.swift */,
+				2C08522229EA895900A11890 /* ScanVM.swift */,
 			);
 			path = Scan;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C08521D29EA879D00A11890 /* NavVM.swift in Sources */,
+				2C08522329EA895900A11890 /* ScanVM.swift in Sources */,
 				2C08522129EA887C00A11890 /* ScanView.swift in Sources */,
 				2C08521029EA874C00A11890 /* ParentView.swift in Sources */,
 				2C08520E29EA874C00A11890 /* PDFinderApp.swift in Sources */,
@@ -294,6 +298,7 @@
 				DEVELOPMENT_TEAM = N5Q5NU635P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Камера нужна для считывания штрих-кодов";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -323,6 +328,7 @@
 				DEVELOPMENT_TEAM = N5Q5NU635P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Камера нужна для считывания штрих-кодов";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
