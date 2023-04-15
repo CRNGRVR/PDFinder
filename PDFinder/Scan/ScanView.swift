@@ -15,15 +15,13 @@ struct ScanView: View {
     
     var body: some View {
         VStack{
+            
             Text("Приложение работает")
-            
-            
-            GeometryReader{
-                let size = $0.size
                 
-                CameraView(session: $scanVM.session, frameSize: size)
-            }
-                
+            CameraView(session: $scanVM.session)
+        }
+        .onAppear{
+            scanVM.permissionRequestIfNotAuthorized()
         }
     }
 }

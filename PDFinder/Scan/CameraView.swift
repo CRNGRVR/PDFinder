@@ -6,34 +6,44 @@
 //
 
 import SwiftUI
-import AVFoundation
 import AVKit
 
 
 struct CameraView: UIViewRepresentable{
     
     @Binding var session: AVCaptureSession
-    var frameSize: CGSize
+    
+    //  Размер основного view и размер слоя камеры
+    let size = CGSize(width: 300, height: 150)
     
     
     func makeUIView(context: Context) -> UIView {
         
         let cameraLayer = AVCaptureVideoPreviewLayer(session: session)
         
-        let view = UIViewType(frame: CGRect(origin: .zero, size: frameSize))
+        //  Задание размера
+        //  Можно и просто CGRect(origin: .zero, size: size)
+        cameraLayer.frame = .init(origin: .zero, size: size)
         
-        cameraLayer.frame = .init(origin: .zero, size: frameSize)
+        //  Обрезает слой с камерой по размерам
         cameraLayer.videoGravity = .resizeAspectFill
+            
+        //  Привязывает соответствие рамок камеры и рамок view
+        //  дл возможности применения опций, таких как cornerRadius
         cameraLayer.masksToBounds = true
         
-        view.backgroundColor = .clear
+        //  Основное view, на которое накладывается камера
+        let view = UIViewType(frame: CGRect(origin: .zero, size: size))
+        
+        
+        //  Наложение камеры на view
         view.layer.addSublayer(cameraLayer)
         
         return view
     }
     
-    func updateUIView(_ uiView: UIViewType, context: Context) {
-        
-    }
     
+    func updateUIView(_ uiView: UIViewType, context: Context) {
+        //  Пустота
+    }
 }

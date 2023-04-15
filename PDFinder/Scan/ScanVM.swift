@@ -14,8 +14,7 @@ class ScanVM: ObservableObject{
     @Published var session: AVCaptureSession = .init()
     
     init(){
-        
-        permissionRequestIfNotAuthorized()
+
         setUp()
     }
     
@@ -33,23 +32,28 @@ class ScanVM: ObservableObject{
         }
     }
     
-    
+    //  Конфигурирование
     func setUp(){
         
-        let device = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .back).devices.first
-        
-        print(device)
-        
+        //  Поиск камеры
+        let device = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .back).devices[0]
+
         do{
-            let input = try AVCaptureDeviceInput(device: device!)
+            
+            //  Настройка ввода
+            let input = try AVCaptureDeviceInput(device: device)
 
             session.beginConfiguration()
             session.addInput(input)
             session.commitConfiguration()
-            session.startRunning()
+            
+            //  Выполнения на фоновом потоке требует IDE
+            DispatchQueue.global(qos: .default).async{
+                self.session.startRunning()
+            }
         }
         catch{
-            print("Ye djj,ot rfgtw")
+            print("Error.")
         }
     }
     
