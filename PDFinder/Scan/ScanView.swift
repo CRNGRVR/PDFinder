@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AVFoundation
+import AVKit
 
 struct ScanView: View {
     
@@ -14,7 +15,15 @@ struct ScanView: View {
     
     var body: some View {
         VStack{
+            Text("Приложение работает")
             
+            
+            GeometryReader{
+                let size = $0.size
+                
+                CameraView(session: $scanVM.session, frameSize: size)
+            }
+                
         }
     }
 }

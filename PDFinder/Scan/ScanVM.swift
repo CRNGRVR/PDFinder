@@ -7,12 +7,16 @@
 
 import Foundation
 import AVFoundation
+import AVKit
 
 class ScanVM: ObservableObject{
+    
+    @Published var session: AVCaptureSession = .init()
     
     init(){
         
         permissionRequestIfNotAuthorized()
+        setUp()
     }
     
     
@@ -30,5 +34,23 @@ class ScanVM: ObservableObject{
     }
     
     
+    func setUp(){
+        
+        let device = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .back).devices.first
+        
+        print(device)
+        
+        do{
+            let input = try AVCaptureDeviceInput(device: device!)
+
+            session.beginConfiguration()
+            session.addInput(input)
+            session.commitConfiguration()
+            session.startRunning()
+        }
+        catch{
+            print("Ye djj,ot rfgtw")
+        }
+    }
     
 }
