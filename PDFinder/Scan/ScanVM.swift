@@ -13,8 +13,11 @@ class ScanVM: ObservableObject{
     
     @Published var session: AVCaptureSession = .init()
     
+    @Published var codeOutput: AVCaptureMetadataOutput = .init()
+    @Published var codeDelegate = CodeDelegate()
+    
+    
     init(){
-
         setUp()
     }
     
@@ -44,7 +47,15 @@ class ScanVM: ObservableObject{
             let input = try AVCaptureDeviceInput(device: device)
 
             session.beginConfiguration()
+            
             session.addInput(input)
+            
+            session.addOutput(codeOutput)
+            //  Добавить сюда необходимое
+            codeOutput.metadataObjectTypes = [.code128]
+            
+            codeOutput.setMetadataObjectsDelegate(codeDelegate, queue: .main)
+            
             session.commitConfiguration()
             
             //  Выполнения на фоновом потоке требует IDE
