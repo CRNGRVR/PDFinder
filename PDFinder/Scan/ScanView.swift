@@ -17,8 +17,11 @@ struct ScanView: View {
         VStack{
             
             Text("Приложение работает")
-                
+            
             CameraView(session: $scanVM.session)
+            
+                .alert(isPresented: $scanVM.isShow, content: {Alert(title: Text(scanVM.msg))})
+            
         }
         .onAppear{
             scanVM.permissionRequestIfNotAuthorized()

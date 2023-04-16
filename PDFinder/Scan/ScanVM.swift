@@ -9,22 +9,28 @@ import Foundation
 import AVFoundation
 import AVKit
 
-class ScanVM: ObservableObject{
+class ScanVM: ObservableObject, BarcodeInteraction{
     
     @Published var session: AVCaptureSession = .init()
-    
     @Published var codeOutput: AVCaptureMetadataOutput = .init()
+    
+    @Published var isShow: Bool = false
+    @Published var msg: String = ""
+    
+    //  Класс, реагирующий на попадание кода в камеру
     @Published var codeDelegate = CodeDelegate()
     
-    
     init(){
+        
+        //  Для вызова местных методов из CodeDelegate
+        codeDelegate.scanVM = self
+        
         setUp()
     }
     
     
-    
-    
     //  Получение разрешения на использование камеры
+    //  Вызывается в onAppear()
     func permissionRequestIfNotAuthorized(){
         
         if AVCaptureDevice.authorizationStatus(for: .video) == .authorized{
@@ -35,7 +41,7 @@ class ScanVM: ObservableObject{
         }
     }
     
-    //  Конфигурирование
+    //  Конфигурирование сканера
     func setUp(){
         
         //  Поиск камеры
@@ -66,6 +72,15 @@ class ScanVM: ObservableObject{
         catch{
             print("Error.")
         }
+    }
+    
+    
+    //  Вызывается из CodeDelegate, когда код прочитан
+    func readed(code: String) {
+        print(code)
+        
+        msg = code
+        isShow = true
     }
     
 }
