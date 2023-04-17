@@ -14,10 +14,13 @@ struct ParentView: View {
     var body: some View {
         
         switch navVM.currentScreen{
-            
+
         case "scan":
-            ScanView()
-            
+            ScanView(nav: navVM)
+        
+        case "main":
+            MainView(nav: navVM)
+
         default:
             Color.red
         }

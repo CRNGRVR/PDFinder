@@ -11,6 +11,9 @@ import AVKit
 
 class ScanVM: ObservableObject, BarcodeInteraction{
     
+    //  Навигация по приложению
+    @Published var nav: NavVM
+    
     @Published var session: AVCaptureSession = .init()
     @Published var codeOutput: AVCaptureMetadataOutput = .init()
     
@@ -20,7 +23,9 @@ class ScanVM: ObservableObject, BarcodeInteraction{
     //  Класс, реагирующий на попадание кода в камеру
     @Published var codeDelegate = CodeDelegate()
     
-    init(){
+    init(nav: NavVM){
+        
+        self.nav = nav
         
         //  Для вызова местных методов из CodeDelegate
         codeDelegate.scanVM = self
@@ -53,15 +58,11 @@ class ScanVM: ObservableObject, BarcodeInteraction{
             let input = try AVCaptureDeviceInput(device: device)
 
             session.beginConfiguration()
-            
             session.addInput(input)
-            
             session.addOutput(codeOutput)
             //  Добавить сюда необходимое
             codeOutput.metadataObjectTypes = [.code128]
-            
             codeOutput.setMetadataObjectsDelegate(codeDelegate, queue: .main)
-            
             session.commitConfiguration()
             
             //  Выполнения на фоновом потоке требует IDE
@@ -77,10 +78,12 @@ class ScanVM: ObservableObject, BarcodeInteraction{
     
     //  Вызывается из CodeDelegate, когда код прочитан
     func readed(code: String) {
-        print(code)
         
-        msg = code
-        isShow = true
+        nav.code = code
+        nav.currentScreen = "main"
+        
+        //  Выключение камеры
+        session.stopRunning()
     }
     
 }

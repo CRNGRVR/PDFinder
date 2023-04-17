@@ -11,7 +11,10 @@ import AVKit
 
 struct ScanView: View {
     
-    @ObservedObject var scanVM = ScanVM()
+    @ObservedObject var scanVM: ScanVM
+    init(nav: NavVM){
+        scanVM = ScanVM(nav: nav)
+    }
     
     var body: some View {
         
@@ -67,8 +70,8 @@ struct ScanView: View {
     }
 }
 
-struct ScanView_Previews: PreviewProvider {
-    static var previews: some View {
-        ScanView()
-    }
-}
+//struct ScanView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ScanView()
+//    }
+//}
