@@ -80,7 +80,7 @@ class ScanVM: ObservableObject, BarcodeInteraction{
     func readed(code: String) {
         
         nav.code = code
-        nav.currentScreen = "main"
+        nav.currentScreen = "pdf"
         
         //  Выключение камеры
         session.stopRunning()

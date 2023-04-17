@@ -11,6 +11,7 @@ import AVKit
 //  NSObject наследуем, потому что иначе компилятор ругается
 class CodeDelegate: NSObject, AVCaptureMetadataOutputObjectsDelegate, ObservableObject{
     
+    //  Делегат основного VM, для вызова функций оттуда
     var scanVM: BarcodeInteraction?
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {

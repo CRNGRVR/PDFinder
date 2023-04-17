@@ -15,6 +15,7 @@ struct CameraView: UIViewRepresentable{
     
     //  Размер основного view и размер слоя камеры
     var size: CGSize
+    var orientation: UIDeviceOrientation
     
     
     func makeUIView(context: Context) -> UIView {
@@ -27,7 +28,24 @@ struct CameraView: UIViewRepresentable{
         
         //  Обрезает слой с камерой по размерам
         cameraLayer.videoGravity = .resizeAspectFill
+        
+        
+        switch orientation {
+    
+        case .portrait:
+            cameraLayer.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
             
+        case .landscapeLeft:
+            cameraLayer.connection?.videoOrientation = AVCaptureVideoOrientation.landscapeLeft
+            
+        case .landscapeRight:
+            cameraLayer.connection?.videoOrientation = AVCaptureVideoOrientation.landscapeRight
+            
+        default:
+            cameraLayer.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
+        }
+        
+        
         //  Привязывает соответствие рамок камеры и рамок view
         //  дл возможности применения опций, таких как cornerRadius
         cameraLayer.masksToBounds = true
@@ -46,4 +64,5 @@ struct CameraView: UIViewRepresentable{
     func updateUIView(_ uiView: UIViewType, context: Context) {
         //  Пустота
     }
+    
 }

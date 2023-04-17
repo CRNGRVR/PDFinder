@@ -46,7 +46,7 @@ struct ScanView: View {
             Spacer()
             
             GeometryReader{g in
-                CameraView(session: $scanVM.session, size: g.size)
+                CameraView(session: $scanVM.session, size: g.size, orientation: UIDevice.current.orientation)
                     .cornerRadius(4)
             }
             .frame(width: 300, height: 150)
@@ -69,9 +69,3 @@ struct ScanView: View {
         }
     }
 }
-
-//struct ScanView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ScanView()
-//    }
-//}

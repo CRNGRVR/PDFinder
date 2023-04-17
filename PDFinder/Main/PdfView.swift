@@ -7,18 +7,18 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct PdfView: View {
     
-    @ObservedObject var mainVM: MainVM
+    @ObservedObject var pdfVM: PdfVM
     init(nav: NavVM){
-        mainVM = MainVM(nav: nav)
+        pdfVM = PdfVM(nav: nav)
     }
     
     var body: some View {
         ZStack{
             
-            if mainVM.file != nil{
-                PDFReader(data: mainVM.file)
+            if pdfVM.file != nil{
+                PDFReader(data: pdfVM.file)
                     .onTapGesture {
                         print("tapped")
                     }
@@ -31,7 +31,7 @@ struct MainView: View {
                         .frame(maxWidth: .infinity, maxHeight: 50)
                         .opacity(0.7)
                     
-                    Button(action: {mainVM.back()}, label: {Image(systemName: "arrowshape.turn.up.backward")})
+                    Button(action: {pdfVM.back()}, label: {Image(systemName: "arrowshape.turn.up.backward")})
                 }
                 .frame(maxWidth: .infinity, maxHeight: 50)
                 
@@ -40,9 +40,3 @@ struct MainView: View {
         }
     }
 }
-
-//struct MainView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MainView()
-//    }
-//}

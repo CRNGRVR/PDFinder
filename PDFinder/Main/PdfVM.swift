@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class MainVM: ObservableObject{
+class PdfVM: ObservableObject{
     
     //  Навигация
     @Published var nav: NavVM

@@ -18,8 +18,8 @@ struct ParentView: View {
         case "scan":
             ScanView(nav: navVM)
         
-        case "main":
-            MainView(nav: navVM)
+        case "pdf":
+            PdfView(nav: navVM)
 
         default:
             Color.red
