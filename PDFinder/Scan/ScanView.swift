@@ -14,15 +14,53 @@ struct ScanView: View {
     @ObservedObject var scanVM = ScanVM()
     
     var body: some View {
+        
         VStack{
             
-            Text("Приложение работает")
+            HStack{
+                Text("Поместите штрих-код в область сканнера")
+                    .font(.system(size: 24, weight: .semibold))
+                    .padding(.leading, 20)
+                
+                Spacer()
+            }
+            .padding(.top, 40)
             
-            CameraView(session: $scanVM.session)
             
-                .alert(isPresented: $scanVM.isShow, content: {Alert(title: Text(scanVM.msg))})
+            HStack{
+                Button(action: {}, label: {
+                    Text("Перейти к ранее загруженным\nдокументам")
+                        .multilineTextAlignment(.leading)
+                    
+                        .font(.system(size: 14))
+                        .foregroundColor(Color.blue)
+                })
+                .padding(.leading, 20)
+                
+                Spacer()
+            }
             
+            Spacer()
+            
+            GeometryReader{g in
+                CameraView(session: $scanVM.session, size: g.size)
+                    .cornerRadius(4)
+            }
+            .frame(width: 300, height: 150)
+            
+                   
+                Image(systemName: "barcode.viewfinder")
+                    .foregroundColor(Color.gray)
+                    .font(.system(size: 50))
+                    .padding(.top, 20)
+                
+            
+            Spacer()
+            Spacer()
         }
+        
+        .alert(isPresented: $scanVM.isShow, content: {Alert(title: Text(scanVM.msg))})
+        
         .onAppear{
             scanVM.permissionRequestIfNotAuthorized()
         }

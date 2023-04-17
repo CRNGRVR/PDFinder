@@ -14,7 +14,7 @@ struct CameraView: UIViewRepresentable{
     @Binding var session: AVCaptureSession
     
     //  Размер основного view и размер слоя камеры
-    let size = CGSize(width: 300, height: 150)
+    var size: CGSize
     
     
     func makeUIView(context: Context) -> UIView {
