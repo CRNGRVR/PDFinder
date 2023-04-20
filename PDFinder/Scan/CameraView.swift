@@ -53,7 +53,12 @@ struct CameraView: UIViewRepresentable{
     func updateUIView(_ uiView: UIViewType, context: Context) {
        
         //  Обновление ориентации видео
-        //cameraLayer.connection?.videoOrientation = getOrientation(orientation)
+        //
+        //  Обращение к слою камеры через массив слоёв view
+        if let sub = uiView.layer.sublayers?.first as? AVCaptureVideoPreviewLayer{
+
+            sub.connection?.videoOrientation = getOrientation(orientation)
+        }
     }
     
     
@@ -62,6 +67,12 @@ struct CameraView: UIViewRepresentable{
         
         guard let orientation = orientation else {return .portrait}
         
+        //
+        //  !!! ЗНАЧЕНИЯ ОТРАЖАЮТСЯ !!!
+        //
+        //  Пока не понял, почему так вышло, но при нормальной
+        //  подстановке всё кверх-ногами
+        //
         
         switch orientation {
     
@@ -69,10 +80,10 @@ struct CameraView: UIViewRepresentable{
             return AVCaptureVideoOrientation.portrait
             
         case .landscapeLeft:
-            return AVCaptureVideoOrientation.landscapeLeft
+            return AVCaptureVideoOrientation.landscapeRight
             
         case .landscapeRight:
-            return AVCaptureVideoOrientation.landscapeRight
+            return AVCaptureVideoOrientation.landscapeLeft
             
         default:
             return AVCaptureVideoOrientation.portrait
