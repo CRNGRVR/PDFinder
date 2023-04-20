@@ -21,48 +21,62 @@ struct CameraView: UIViewRepresentable{
     func makeUIView(context: Context) -> UIView {
         
         let cameraLayer = AVCaptureVideoPreviewLayer(session: session)
-        
+
         //  Задание размера
         //  Можно и просто CGRect(origin: .zero, size: size)
         cameraLayer.frame = .init(origin: .zero, size: size)
-        
+
         //  Обрезает слой с камерой по размерам
         cameraLayer.videoGravity = .resizeAspectFill
+
+        //  Получение ориентации видео
+        cameraLayer.connection?.videoOrientation = getOrientation(orientation)
+
+
+        //  Привязывает соответствие рамок камеры и рамок view
+        //  дл возможности применения опций, таких как cornerRadius
+        cameraLayer.masksToBounds = true
+
+        //  Основное view, на которое накладывается камера
+        let view = UIViewType(frame: CGRect(origin: .zero, size: size))
+
+
+        //  Наложение камеры на view
+        view.layer.addSublayer(cameraLayer)
+
+        return view
+        
+    }
+    
+    
+    
+    func updateUIView(_ uiView: UIViewType, context: Context) {
+       
+        //  Обновление ориентации видео
+        //cameraLayer.connection?.videoOrientation = getOrientation(orientation)
+    }
+    
+    
+    //  Преобразование ориентации устройства в ориентацию видео
+    func getOrientation(_ orientation: UIDeviceOrientation?) -> AVCaptureVideoOrientation{
+        
+        guard let orientation = orientation else {return .portrait}
         
         
         switch orientation {
     
         case .portrait:
-            cameraLayer.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
+            return AVCaptureVideoOrientation.portrait
             
         case .landscapeLeft:
-            cameraLayer.connection?.videoOrientation = AVCaptureVideoOrientation.landscapeLeft
+            return AVCaptureVideoOrientation.landscapeLeft
             
         case .landscapeRight:
-            cameraLayer.connection?.videoOrientation = AVCaptureVideoOrientation.landscapeRight
+            return AVCaptureVideoOrientation.landscapeRight
             
         default:
-            cameraLayer.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
+            return AVCaptureVideoOrientation.portrait
         }
-        
-        
-        //  Привязывает соответствие рамок камеры и рамок view
-        //  дл возможности применения опций, таких как cornerRadius
-        cameraLayer.masksToBounds = true
-        
-        //  Основное view, на которое накладывается камера
-        let view = UIViewType(frame: CGRect(origin: .zero, size: size))
-        
-        
-        //  Наложение камеры на view
-        view.layer.addSublayer(cameraLayer)
-        
-        return view
-    }
-    
-    
-    func updateUIView(_ uiView: UIViewType, context: Context) {
-        //  Пустота
     }
     
 }

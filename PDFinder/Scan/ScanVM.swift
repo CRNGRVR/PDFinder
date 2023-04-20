@@ -23,6 +23,13 @@ class ScanVM: ObservableObject, BarcodeInteraction{
     //  Класс, реагирующий на попадание кода в камеру
     @Published var codeDelegate = CodeDelegate()
     
+    //  Ориентация экрана. Используется для перерисовки слоя камеры
+    //  в соответствии ориентации
+    @Published var orientation: UIDeviceOrientation = UIDevice.current.orientation
+
+    
+    
+    
     init(nav: NavVM){
         
         self.nav = nav
@@ -31,6 +38,14 @@ class ScanVM: ObservableObject, BarcodeInteraction{
         codeDelegate.scanVM = self
         
         setUp()
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.orientationChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
+    }
+    
+    
+    @objc func orientationChanged(_ notice: Notification){
+        orientation = UIDevice.current.orientation
     }
     
     
