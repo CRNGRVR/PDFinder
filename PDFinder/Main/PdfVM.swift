@@ -16,22 +16,42 @@ class PdfVM: ObservableObject{
     //  Данные, пришедшие с сервера
     @Published var file: Data?
     
+    @Published var isShowPanel = true
+    
     init(nav: NavVM){
         
         self.nav = nav
-        requestFile()
+        loadFile()
+    }
+    
+    
+    func loadFile(){
+        
+        if nav.isFileFromDB{
+            self.file = nav.pdfAsData
+        }
+        else{
+            requestFile()
+        }
+        
     }
     
     func requestFile(){
         
         AF
-            .request("http://192.168.0.158:3000/\(nav.code!)")
+            .request("http://192.168.0.158:3000/\(nav.code ?? "0")")
             .response{ resp in
+                
+                print("requested")
                 
                 if let data = resp.data{
                     
+                    print("data!!!")
+                    
                     self.file = data
-                    print("Data!")
+                    
+                    //  Сохранение документа
+                    self.nav.currentDocumentIdentifire = CD.shared.add(name: self.nav.code ?? "unknown", data: data)
                 }
             }
     }
@@ -39,6 +59,17 @@ class PdfVM: ObservableObject{
     func back(){
         
         nav.code = nil
-        nav.currentScreen = "scan"
+        nav.currentScreen = nav.lastscreen
+        nav.currentDocumentIdentifire = nil
+    }
+    
+    func delete(){
+        
+        nav.currentScreen = nav.lastscreen
+        CD.shared.delete(id: nav.currentDocumentIdentifire!)
+    }
+    
+    func docClick(){
+        isShowPanel.toggle()
     }
 }

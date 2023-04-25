@@ -20,22 +20,32 @@ struct PdfView: View {
             if pdfVM.file != nil{
                 PDFReader(data: pdfVM.file)
                     .onTapGesture {
-                        print("tapped")
+                        pdfVM.docClick()
                     }
             }
             
             
-            VStack(spacing: 0){
-                ZStack{
-                    Color.white
-                        .frame(maxWidth: .infinity, maxHeight: 50)
-                        .opacity(0.7)
+            if pdfVM.isShowPanel{
+                VStack(spacing: 0){
+                    ZStack{
+                        Color.white
+                            .frame(maxWidth: .infinity, maxHeight: 50)
+                            .opacity(0.7)
+                        
+                        HStack{
+                            Button(action: {pdfVM.back()}, label: {Image(systemName: "arrowshape.turn.up.backward")})
+                                .padding(.leading, 20)
+                            
+                            Spacer()
+                            
+                            Button(action: {pdfVM.delete()}, label: {Image(systemName: "trash").foregroundColor(Color.red)})
+                                .padding(.trailing, 20)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: 50)
                     
-                    Button(action: {pdfVM.back()}, label: {Image(systemName: "arrowshape.turn.up.backward")})
+                    Spacer()
                 }
-                .frame(maxWidth: .infinity, maxHeight: 50)
-                
-                Spacer()
             }
         }
     }

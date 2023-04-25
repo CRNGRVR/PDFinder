@@ -34,6 +34,9 @@ class ScanVM: ObservableObject, BarcodeInteraction{
         
         self.nav = nav
         
+        nav.lastscreen = "scan"
+        nav.isFileFromDB = false
+        
         //  Для вызова местных методов из CodeDelegate
         codeDelegate.scanVM = self
         
@@ -101,4 +104,10 @@ class ScanVM: ObservableObject, BarcodeInteraction{
         session.stopRunning()
     }
     
+    
+    func goToList(){
+        
+        nav.currentScreen = "list"
+        session.stopRunning()
+    }
 }

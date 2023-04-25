@@ -16,6 +16,10 @@
 		2C08522329EA895900A11890 /* ScanVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C08522229EA895900A11890 /* ScanVM.swift */; };
 		2C08522529EAC47500A11890 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C08522429EAC47500A11890 /* CameraView.swift */; };
 		2C08522729EB210400A11890 /* CodeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C08522629EB210400A11890 /* CodeDelegate.swift */; };
+		2C1287E829F6EA910021EC65 /* ListDocsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1287E729F6EA910021EC65 /* ListDocsVM.swift */; };
+		2C1287EA29F6EAA30021EC65 /* ListDocsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1287E929F6EAA30021EC65 /* ListDocsView.swift */; };
+		2C1287ED29F7C4100021EC65 /* DocsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C1287EB29F7C4100021EC65 /* DocsModel.xcdatamodeld */; };
+		2C1287EF29F7C4660021EC65 /* CD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1287EE29F7C4660021EC65 /* CD.swift */; };
 		2CAB697C29EC63F10053B39F /* BarcodeInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAB697B29EC63F10053B39F /* BarcodeInteraction.swift */; };
 		2CD9988129ED1D4C009DCA26 /* PdfVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9988029ED1D4C009DCA26 /* PdfVM.swift */; };
 		2CD9988329ED1D53009DCA26 /* PdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9988229ED1D53009DCA26 /* PdfView.swift */; };
@@ -34,6 +38,11 @@
 		2C08522229EA895900A11890 /* ScanVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanVM.swift; sourceTree = "<group>"; };
 		2C08522429EAC47500A11890 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		2C08522629EB210400A11890 /* CodeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeDelegate.swift; sourceTree = "<group>"; };
+		2C1287E729F6EA910021EC65 /* ListDocsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDocsVM.swift; sourceTree = "<group>"; };
+		2C1287E929F6EAA30021EC65 /* ListDocsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDocsView.swift; sourceTree = "<group>"; };
+		2C1287EC29F7C4100021EC65 /* DocsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DocsModel.xcdatamodel; sourceTree = "<group>"; };
+		2C1287EE29F7C4660021EC65 /* CD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CD.swift; sourceTree = "<group>"; };
+		2C1287F029F807130021EC65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2CAB697B29EC63F10053B39F /* BarcodeInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeInteraction.swift; sourceTree = "<group>"; };
 		2CD9988029ED1D4C009DCA26 /* PdfVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfVM.swift; sourceTree = "<group>"; };
 		2CD9988229ED1D53009DCA26 /* PdfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfView.swift; sourceTree = "<group>"; };
@@ -71,6 +80,9 @@
 		2C08520C29EA874C00A11890 /* PDFinder */ = {
 			isa = PBXGroup;
 			children = (
+				2C08521129EA874F00A11890 /* Assets.xcassets */,
+				2C1287F029F807130021EC65 /* Info.plist */,
+				2C6FC9F029F6E3E800189E30 /* ListDocs */,
 				2CD9987F29ED1D3D009DCA26 /* Main */,
 				2C08521329EA874F00A11890 /* Preview Content */,
 				2C08521F29EA886F00A11890 /* Scan */,
@@ -93,7 +105,6 @@
 				2C08520D29EA874C00A11890 /* PDFinderApp.swift */,
 				2C08520F29EA874C00A11890 /* ParentView.swift */,
 				2C08521C29EA879D00A11890 /* NavVM.swift */,
-				2C08521129EA874F00A11890 /* Assets.xcassets */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -108,6 +119,17 @@
 				2CAB697B29EC63F10053B39F /* BarcodeInteraction.swift */,
 			);
 			path = Scan;
+			sourceTree = "<group>";
+		};
+		2C6FC9F029F6E3E800189E30 /* ListDocs */ = {
+			isa = PBXGroup;
+			children = (
+				2C1287E729F6EA910021EC65 /* ListDocsVM.swift */,
+				2C1287E929F6EAA30021EC65 /* ListDocsView.swift */,
+				2C1287EE29F7C4660021EC65 /* CD.swift */,
+				2C1287EB29F7C4100021EC65 /* DocsModel.xcdatamodeld */,
+			);
+			path = ListDocs;
 			sourceTree = "<group>";
 		};
 		2CD9987F29ED1D3D009DCA26 /* Main */ = {
@@ -201,12 +223,16 @@
 				2C08522129EA887C00A11890 /* ScanView.swift in Sources */,
 				2CD9988329ED1D53009DCA26 /* PdfView.swift in Sources */,
 				2C08522529EAC47500A11890 /* CameraView.swift in Sources */,
+				2C1287EA29F6EAA30021EC65 /* ListDocsView.swift in Sources */,
 				2CD9988129ED1D4C009DCA26 /* PdfVM.swift in Sources */,
 				2C08521029EA874C00A11890 /* ParentView.swift in Sources */,
+				2C1287EF29F7C4660021EC65 /* CD.swift in Sources */,
+				2C1287ED29F7C4100021EC65 /* DocsModel.xcdatamodeld in Sources */,
 				2C08520E29EA874C00A11890 /* PDFinderApp.swift in Sources */,
 				2CAB697C29EC63F10053B39F /* BarcodeInteraction.swift in Sources */,
 				2CD9988829ED2D26009DCA26 /* PDFReader.swift in Sources */,
 				2C08522729EB210400A11890 /* CodeDelegate.swift in Sources */,
+				2C1287E829F6EA910021EC65 /* ListDocsVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +364,7 @@
 				DEVELOPMENT_TEAM = N5Q5NU635P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PDFinder/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Камера нужна для считывания штрих-кодов";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -368,6 +395,7 @@
 				DEVELOPMENT_TEAM = N5Q5NU635P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PDFinder/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Камера нужна для считывания штрих-кодов";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -428,6 +456,19 @@
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		2C1287EB29F7C4100021EC65 /* DocsModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2C1287EC29F7C4100021EC65 /* DocsModel.xcdatamodel */,
+			);
+			currentVersion = 2C1287EC29F7C4100021EC65 /* DocsModel.xcdatamodel */;
+			path = DocsModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2C08520229EA874C00A11890 /* Project object */;
 }

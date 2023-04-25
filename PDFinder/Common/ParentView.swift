@@ -20,6 +20,9 @@ struct ParentView: View {
         
         case "pdf":
             PdfView(nav: navVM)
+            
+        case "list":
+            ListDocsView(nav: navVM)
 
         default:
             Color.red

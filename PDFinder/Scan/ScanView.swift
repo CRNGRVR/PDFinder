@@ -31,7 +31,7 @@ struct ScanView: View {
             
             
             HStack{
-                Button(action: {}, label: {
+                Button(action: {scanVM.goToList()}, label: {
                     Text("Перейти к ранее загруженным\nдокументам")
                         .multilineTextAlignment(.leading)
                     
