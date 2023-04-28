@@ -85,6 +85,7 @@ struct CD{
     
     
     //  Подсчёт размера всех документов, хранимых локально
+    //  и указание единицы измерения
     func countOfBytesWithDescr() -> String{
         
         let request = Document.fetchRequest()
@@ -116,6 +117,8 @@ struct CD{
         }
     }
     
+    //  Полная очистка хранилища.
+    //  Вызывается из настроек
     func deleteAll(){
         
         let request = Document.fetchRequest()

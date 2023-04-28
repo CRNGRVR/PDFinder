@@ -16,6 +16,7 @@ class PdfVM: ObservableObject{
     //  Данные, пришедшие с сервера
     @Published var file: Data?
     
+    //  Показывать или скрывать панель с кнопками
     @Published var isShowPanel = true
     
     init(nav: NavVM){
@@ -33,9 +34,9 @@ class PdfVM: ObservableObject{
         else{
             requestFile()
         }
-        
     }
     
+    //  Запрос данных с сервера
     func requestFile(){
         
         AF

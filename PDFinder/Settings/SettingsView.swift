@@ -14,7 +14,9 @@ struct SettingsView: View {
     var body: some View {
         
         VStack{
+            
             HStack{
+                
                 Spacer()
                 
                 Text("Настройки")
@@ -23,7 +25,6 @@ struct SettingsView: View {
                 Spacer()
             }
             .padding(.top, 20)
-            
             
             
             ZStack{

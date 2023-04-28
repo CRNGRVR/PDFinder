@@ -1,8 +1,6 @@
 //
-//  ContentView.swift
-//  PDFinder
-//
-//  Created by Иван on 15.04.2023.
+//  Главное View, навигация в приложении происходит
+//  путём переключения его дочерних элементов
 //
 
 import SwiftUI
@@ -27,11 +25,5 @@ struct ParentView: View {
         default:
             Color.red
         }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ParentView()
     }
 }

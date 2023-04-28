@@ -1,13 +1,13 @@
 //
-//  InteractionProtocol.swift
-//  PDFinder
-//
-//  Created by Иван on 17.04.2023.
+//  Протокол взаимодействия основного класса сканера
+//  и его делегата
 //
 
 import Foundation
 
 protocol BarcodeInteraction{
     
+    //  Всё для того, чтобы можно было вызвать функцию
+    //  считывания из основного класса сканера
     func readed(code: String)
 }

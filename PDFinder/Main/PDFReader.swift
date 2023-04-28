@@ -16,7 +16,10 @@ struct PDFReader: UIViewRepresentable{
     func makeUIView(context: Context) -> UIView {
         
         let pdfView = PDFView()
-        pdfView.document = PDFDocument(data: data!)
+        
+        if let data = data{
+            pdfView.document = PDFDocument(data: data)
+        }
         
         return pdfView
     }

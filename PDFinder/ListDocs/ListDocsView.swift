@@ -75,9 +75,3 @@ struct element: View{
         }
     }
 }
-
-struct ListDocsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ListDocsView(nav: NavVM())
-    }
-}

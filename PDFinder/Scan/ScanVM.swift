@@ -38,7 +38,9 @@ class ScanVM: ObservableObject, BarcodeInteraction{
                 session.stopRunning()
             }
             else{
-                session.startRunning()
+                DispatchQueue.global(qos: .default).async {
+                    self.session.startRunning()
+                }
             }
         }
     }
@@ -56,7 +58,7 @@ class ScanVM: ObservableObject, BarcodeInteraction{
         
         setUp()
         
-        
+        //  Отслеживание системных уведомлений о изменении ориентации экрана
         NotificationCenter.default.addObserver(self, selector: #selector(self.orientationChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
