@@ -84,4 +84,56 @@ struct CD{
     }
     
     
+    //  Подсчёт размера всех документов, хранимых локально
+    func countOfBytesWithDescr() -> String{
+        
+        let request = Document.fetchRequest()
+        
+        do{
+            let allDocs = try viewContext.fetch(request)
+            
+            var bytes = 0
+            
+            for item in allDocs{
+                bytes += item.data?.count ?? 0
+            }
+            
+            
+            if bytes < 1024{
+                return "\(bytes) байт"
+            }
+            else if bytes > 1024 && bytes < 1048576{ //1048576 б == 1 мб
+                return "\(bytes / 1024) кбайт"
+            }
+            else{
+                return "\(bytes / 1048576) мбайт"
+            }
+            
+        }
+        catch{
+            print("Error(countOfBytes)")
+            return "Ошибка вычисления"
+        }
+    }
+    
+    func deleteAll(){
+        
+        let request = Document.fetchRequest()
+        
+        var items: [Document]
+        
+        do{
+            items = try viewContext.fetch(request)
+        }
+        catch{
+            print("Error(deleteAll).")
+            return
+        }
+        
+        for item in items{
+            viewContext.delete(item)
+        }
+        
+        save()
+    }
 }

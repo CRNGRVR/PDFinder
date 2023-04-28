@@ -39,23 +39,22 @@ class PdfVM: ObservableObject{
     func requestFile(){
         
         AF
-            .request("http://192.168.0.158:3000/\(nav.code ?? "0")")
+            .request("\(UD.shared.httpURL)/\(nav.code ?? "0")")
             .response{ resp in
-                
-                print("requested")
-                
+                                
                 if let data = resp.data{
-                    
-                    print("data!!!")
                     
                     self.file = data
                     
                     //  Сохранение документа
+                    //  Функция сохранения возвращает идентификатор
                     self.nav.currentDocumentIdentifire = CD.shared.add(name: self.nav.code ?? "unknown", data: data)
                 }
             }
     }
     
+    //  Возвращение назад.
+    //  Кнопка на панели действий
     func back(){
         
         nav.code = nil
@@ -63,12 +62,15 @@ class PdfVM: ObservableObject{
         nav.currentDocumentIdentifire = nil
     }
     
+    //  Удаление документа из панели действий
     func delete(){
         
         nav.currentScreen = nav.lastscreen
         CD.shared.delete(id: nav.currentDocumentIdentifire!)
     }
     
+    //  Нажатие по области документа.
+    //  Скрывает или показывает верхнюю панель действий
     func docClick(){
         isShowPanel.toggle()
     }

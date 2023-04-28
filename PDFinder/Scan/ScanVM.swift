@@ -28,7 +28,21 @@ class ScanVM: ObservableObject, BarcodeInteraction{
     @Published var orientation: UIDeviceOrientation = UIDevice.current.orientation
 
     
-    
+    @Published var isShowSettingsSheet = false {
+        
+        //  Запуск сессии камеры, когда экран настроек убран
+        //  И остановка, когда поднят
+        didSet{
+            
+            if isShowSettingsSheet{
+                session.stopRunning()
+            }
+            else{
+                session.startRunning()
+            }
+        }
+    }
+
     
     init(nav: NavVM){
         
@@ -108,6 +122,11 @@ class ScanVM: ObservableObject, BarcodeInteraction{
     func goToList(){
         
         nav.currentScreen = "list"
+        session.stopRunning()
+    }
+    
+    func showSettings(){
+        isShowSettingsSheet = true
         session.stopRunning()
     }
 }

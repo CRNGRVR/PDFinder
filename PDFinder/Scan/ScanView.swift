@@ -26,6 +26,13 @@ struct ScanView: View {
                     .padding(.leading, 20)
                 
                 Spacer()
+                
+                Button(action: {scanVM.showSettings()}, label: {
+                    Image(systemName: "gearshape")
+                        .foregroundColor(Color.blue)
+                        .font(.system(size: 20))
+                })
+                .padding(.trailing, 20)
             }
             .padding(.top, 40)
             
@@ -60,6 +67,9 @@ struct ScanView: View {
             
             Spacer()
             Spacer()
+        }
+        .sheet(isPresented: $scanVM.isShowSettingsSheet){
+            SettingsView()
         }
         
         .alert(isPresented: $scanVM.isShow, content: {Alert(title: Text(scanVM.msg))})
