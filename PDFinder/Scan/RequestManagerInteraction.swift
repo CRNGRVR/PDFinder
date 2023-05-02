@@ -11,5 +11,5 @@ protocol RequestManagerInteraction{
     
     var progress: Double? { get set }
     
-    func onDataReceived(data: Data?, responseCode: Int?)
+    func onDataReceivedAndLoaded(data: Data?, responseCode: Int?)
 }

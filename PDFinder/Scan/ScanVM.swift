@@ -125,18 +125,24 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
         requestManager.requestFile(code)
     
         //  Раньше здесь был переход
-        //  Но теперь он в onDataReceived
+        //  Но теперь он в onDataReceivedAndLoaded
     }
     
     //  Идёт сразу же после readed
-    func onDataReceived(data: Data?, responseCode: Int?) {
+    func onDataReceivedAndLoaded(data: Data?, responseCode: Int?) {
         
         isDataDownloadingNow = false
         
         if responseCode == 200 && data != nil{
             
             nav.pdfAsData = data
+            nav.currentDocumentIdentifire = requestManager.currentDocumentIdentifire
+            
+            print(requestManager.currentDocumentIdentifire)
+            print(nav.currentDocumentIdentifire)
             nav.currentScreen = "pdf"
+            print(requestManager.currentDocumentIdentifire)
+            print(nav.currentDocumentIdentifire)
         }
         else if responseCode == 404{
             

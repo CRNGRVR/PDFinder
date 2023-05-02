@@ -24,14 +24,14 @@ class RequestManager{
                 
                 if let data = resp.value{
                     
-                    self.scanVM?.onDataReceived(data: data, responseCode: resp.response?.statusCode)
-                    
                     //  Сохранение документа
                     //  Функция сохранения возвращает идентификатор
                     self.currentDocumentIdentifire = CD.shared.add(name: code ?? "unknown", data: data)
+                    
+                    self.scanVM?.onDataReceivedAndLoaded(data: data, responseCode: resp.response?.statusCode)
                 }
                 else{
-                    self.scanVM?.onDataReceived(data: nil, responseCode: resp.response?.statusCode)
+                    self.scanVM?.onDataReceivedAndLoaded(data: nil, responseCode: resp.response?.statusCode)
                 }
             }
             .downloadProgress{ progress in
