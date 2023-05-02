@@ -132,17 +132,14 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
     func onDataReceivedAndLoaded(data: Data?, responseCode: Int?) {
         
         isDataDownloadingNow = false
+        progress = nil
         
         if responseCode == 200 && data != nil{
             
             nav.pdfAsData = data
             nav.currentDocumentIdentifire = requestManager.currentDocumentIdentifire
             
-            print(requestManager.currentDocumentIdentifire)
-            print(nav.currentDocumentIdentifire)
             nav.currentScreen = "pdf"
-            print(requestManager.currentDocumentIdentifire)
-            print(nav.currentDocumentIdentifire)
         }
         else if responseCode == 404{
             
