@@ -9,7 +9,7 @@ import Foundation
 import AVFoundation
 import AVKit
 
-class ScanVM: ObservableObject, BarcodeInteraction{
+class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
     
     //  Навигация по приложению
     @Published var nav: NavVM
@@ -17,11 +17,14 @@ class ScanVM: ObservableObject, BarcodeInteraction{
     @Published var session: AVCaptureSession = .init()
     @Published var codeOutput: AVCaptureMetadataOutput = .init()
     
+    //  Для сообщения о возможной ошибке
     @Published var isShow: Bool = false
     @Published var msg: String = ""
     
     //  Класс, реагирующий на попадание кода в камеру
     @Published var codeDelegate = CodeDelegate()
+    
+    @Published var requestManager = RequestManager()
     
     //  Ориентация экрана. Используется для перерисовки слоя камеры
     //  в соответствии ориентации
@@ -38,13 +41,14 @@ class ScanVM: ObservableObject, BarcodeInteraction{
                 session.stopRunning()
             }
             else{
-                DispatchQueue.global(qos: .default).async {
-                    self.session.startRunning()
-                }
+                startCameraSession()
             }
         }
     }
-
+    
+    
+    @Published var isDataDownloadingNow = false
+    @Published var progress: Double?
     
     init(nav: NavVM){
         
@@ -55,6 +59,8 @@ class ScanVM: ObservableObject, BarcodeInteraction{
         
         //  Для вызова местных методов из CodeDelegate
         codeDelegate.scanVM = self
+        
+        requestManager.scanVM = self
         
         setUp()
         
@@ -99,10 +105,8 @@ class ScanVM: ObservableObject, BarcodeInteraction{
             codeOutput.setMetadataObjectsDelegate(codeDelegate, queue: .main)
             session.commitConfiguration()
             
-            //  Выполнения на фоновом потоке требует IDE
-            DispatchQueue.global(qos: .default).async{
-                self.session.startRunning()
-            }
+            //  Старт сессии в фоновом потоке
+            startCameraSession()
         }
         catch{
             print("Error.")
@@ -112,14 +116,43 @@ class ScanVM: ObservableObject, BarcodeInteraction{
     
     //  Вызывается из CodeDelegate, когда код прочитан
     func readed(code: String) {
-        
-        nav.code = code
-        nav.currentScreen = "pdf"
+    
+        isDataDownloadingNow = true
         
         //  Выключение камеры
         session.stopRunning()
+                
+        requestManager.requestFile(code)
+    
+        //  Раньше здесь был переход
+        //  Но теперь он в onDataReceived
     }
     
+    //  Идёт сразу же после readed
+    func onDataReceived(data: Data?, responseCode: Int?) {
+        
+        isDataDownloadingNow = false
+        
+        if responseCode == 200 && data != nil{
+            
+            nav.pdfAsData = data
+            nav.currentScreen = "pdf"
+        }
+        else if responseCode == 404{
+            
+            msg = "На сервере нет такого файла"
+            isShow = true
+            
+            startCameraSession()
+        }
+        else{
+            
+            msg = "Ошибка сети или сервера"
+            isShow = true
+            
+            startCameraSession()
+        }
+    }
     
     func goToList(){
         
@@ -131,4 +164,12 @@ class ScanVM: ObservableObject, BarcodeInteraction{
         isShowSettingsSheet = true
         session.stopRunning()
     }
+    
+    
+    func startCameraSession(){
+        DispatchQueue.global(qos: .default).async {
+            self.session.startRunning()
+        }
+    }
+    
 }

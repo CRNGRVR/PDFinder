@@ -12,16 +12,8 @@ import Foundation
 struct UD{
     
     static let shared = UD()
-    
-    var httpURL = ""
+
     let key = "httpURL"
-
-
-    init(){
-        if let url = UserDefaults.standard.string(forKey: key){
-            httpURL = url
-        }
-    }
     
     
     func setURL(_ url: String){

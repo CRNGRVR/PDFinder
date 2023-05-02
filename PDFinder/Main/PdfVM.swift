@@ -27,31 +27,8 @@ class PdfVM: ObservableObject{
     
     
     func loadFile(){
-        
-        if nav.isFileFromDB{
-            self.file = nav.pdfAsData
-        }
-        else{
-            requestFile()
-        }
-    }
     
-    //  Запрос данных с сервера
-    func requestFile(){
-        
-        AF
-            .request("\(UD.shared.httpURL)/\(nav.code ?? "0")")
-            .response{ resp in
-                                
-                if let data = resp.data{
-                    
-                    self.file = data
-                    
-                    //  Сохранение документа
-                    //  Функция сохранения возвращает идентификатор
-                    self.nav.currentDocumentIdentifire = CD.shared.add(name: self.nav.code ?? "unknown", data: data)
-                }
-            }
+        self.file = nav.pdfAsData
     }
     
     //  Возвращение назад.

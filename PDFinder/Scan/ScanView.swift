@@ -52,18 +52,34 @@ struct ScanView: View {
             
             Spacer()
             
-            GeometryReader{g in
-                CameraView(session: $scanVM.session, size: g.size, orientation: scanVM.orientation)
-                    .cornerRadius(4)
-            }
-            .frame(width: 300, height: 150)
-            
-                   
+            //  Когда код считан и данные загружаются, то показывается
+            //  значек загрузки, а камера скрывается
+            if !scanVM.isDataDownloadingNow{
+                
+                GeometryReader{g in
+                    CameraView(session: $scanVM.session, size: g.size, orientation: scanVM.orientation)
+                        .cornerRadius(4)
+                }
+                .frame(width: 300, height: 150)
+                
+                       
                 Image(systemName: "barcode.viewfinder")
                     .foregroundColor(Color.gray)
                     .font(.system(size: 50))
                     .padding(.top, 20)
+            }
+            else{
+                ActivityIndicator()
+            }
                 
+            //  Показать шкалу, если идёт загрузка
+            if scanVM.progress != nil{
+               
+                Gauge(value: scanVM.progress ?? 0, label: {})
+                    .padding(.leading, 20)
+                    .padding(.trailing, 20)
+                    .padding(.top, 20)
+            }
             
             Spacer()
             Spacer()

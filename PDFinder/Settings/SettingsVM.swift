@@ -12,7 +12,7 @@ class SettingsVM: ObservableObject{
     //  Адрес сервера
     //  Без пути до документа
     @Published var currentPath: String {
-        
+
         didSet{
             saveURL()
         }
@@ -35,5 +35,6 @@ class SettingsVM: ObservableObject{
 
     func clickClear(){
         CD.shared.deleteAll()
+        memoryWithDescr = CD.shared.countOfBytesWithDescr()
     }
 }
