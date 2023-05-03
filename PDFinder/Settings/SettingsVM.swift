@@ -26,7 +26,9 @@ class SettingsVM: ObservableObject{
     init(){
         
         currentPath = UD.shared.getURL()
-        memoryWithDescr = CD.shared.countOfBytesWithDescr()
+        
+        memoryWithDescr = "Вычисление..."
+        calculateMemoryInBackground()
     }
     
     func saveURL(){
@@ -34,7 +36,25 @@ class SettingsVM: ObservableObject{
     }
 
     func clickClear(){
+        
         CD.shared.deleteAll()
-        memoryWithDescr = CD.shared.countOfBytesWithDescr()
+        
+        memoryWithDescr = "Перерасчёт..."
+        calculateMemoryInBackground()
     }
+    
+    
+    func calculateMemoryInBackground(){
+        
+        //  Расчёт занятого места - обращение к бд, при большом объёме
+        //  данных крайне времязатратно. Чтобы не останавливать поток,
+        //  работающий с интерфейсом эта задача перенесена в фон.
+        //
+        //  При открытии настроек пользователь не ждёт открытия самих настроек,
+        //  а только подгрузки данных в уже появившемся с основного потока окне.
+        DispatchQueue.global(qos: .default).async {
+            self.memoryWithDescr = CD.shared.countOfBytesWithDescr()
+        }
+    }
+    
 }

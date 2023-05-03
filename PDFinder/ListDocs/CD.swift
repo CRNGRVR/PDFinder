@@ -121,20 +121,16 @@ struct CD{
     //  Вызывается из настроек
     func deleteAll(){
         
-        let request = Document.fetchRequest()
         
-        var items: [Document]
+        //  Так должно лучше работать
+        let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "Document")
+        let deleteReq = NSBatchDeleteRequest(fetchRequest: fetchReq)
         
         do{
-            items = try viewContext.fetch(request)
+            try self.container.persistentStoreCoordinator.execute(deleteReq, with: viewContext)
         }
         catch{
-            print("Error(deleteAll).")
-            return
-        }
-        
-        for item in items{
-            viewContext.delete(item)
+            print("хана")
         }
         
         save()
