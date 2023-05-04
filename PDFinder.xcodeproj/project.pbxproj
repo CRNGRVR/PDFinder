@@ -120,6 +120,8 @@
 				2C08520D29EA874C00A11890 /* PDFinderApp.swift */,
 				2C08520F29EA874C00A11890 /* ParentView.swift */,
 				2C08521C29EA879D00A11890 /* NavVM.swift */,
+				2C1287EE29F7C4660021EC65 /* CD.swift */,
+				2CEBFD7D29F9504B00DEBEC0 /* UD.swift */,
 				2CB09F3D29FD6C190028DBAB /* Launch Screen.storyboard */,
 			);
 			path = Common;
@@ -145,7 +147,6 @@
 			children = (
 				2C1287E729F6EA910021EC65 /* ListDocsVM.swift */,
 				2C1287E929F6EAA30021EC65 /* ListDocsView.swift */,
-				2C1287EE29F7C4660021EC65 /* CD.swift */,
 				2C1287EB29F7C4100021EC65 /* DocsModel.xcdatamodeld */,
 			);
 			path = ListDocs;
@@ -166,7 +167,6 @@
 			children = (
 				2CEBFD7929F92B0D00DEBEC0 /* SettingsVM.swift */,
 				2CEBFD7B29F92B1900DEBEC0 /* SettingsView.swift */,
-				2CEBFD7D29F9504B00DEBEC0 /* UD.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";

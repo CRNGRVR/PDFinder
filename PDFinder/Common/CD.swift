@@ -122,7 +122,6 @@ struct CD{
     //  Вызывается из настроек
     func deleteAll(){
         
-        
         //  Так должно лучше работать
         let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "Document")
         let deleteReq = NSBatchDeleteRequest(fetchRequest: fetchReq)
@@ -136,4 +135,43 @@ struct CD{
         
         save()
     }
+    
+    //  Проверка: существует ли уже документ в памяти с таким номером
+    func checkIsExisted(name: String) -> Bool {
+        
+        let req = Document.fetchRequest()
+        req.predicate = NSPredicate(format: "name = '\(name)'")
+        
+        do{
+            let result = try viewContext.fetch(req)
+            
+            if !result.isEmpty{
+                return true
+            }
+            else{
+                return false
+            }
+        }
+        catch{
+            print("Error(checkIsExisted)")
+            return false
+        }
+    }
+    
+    
+    //  Поиск по имени для вызова из сканнера, когда такой элемент нашёлся
+    func find(name: String) -> Document?{
+        
+        let request = Document.fetchRequest()
+        request.predicate = NSPredicate(format: "name = '\(name)'")
+        
+        do{
+            return try viewContext.fetch(request)[0]
+        }
+        catch{
+            print("Error(find name).")
+            return nil
+        }
+    }
+    
 }

@@ -127,18 +127,25 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
     //  Вызывается из CodeDelegate, когда код прочитан
     func readed(code: String) {
     
-        isDataDownloadingNow = true
-        
         //  Выключение камеры
         session.stopRunning()
 
-        requestManager.requestFile(code)
-    
-        //  Раньше здесь был переход
-        //  Но теперь он в onDataReceivedAndLoaded
+        if !CD.shared.checkIsExisted(name: code){
+            
+            isDataDownloadingNow = true
+            requestManager.requestFile(code)
+        }
+        else{
+            
+            nav.pdfAsData = CD.shared.find(name: code)?.data
+            nav.lastscreen = "scan"
+            nav.currentScreen = "pdf"
+        }
+ 
     }
     
-    //  Идёт сразу же после readed
+    //  Идёт сразу же после readed, если документа нет в базе,
+    //  или выбрана соответствующая опция в настройках
     func onDataReceivedAndLoaded(data: Data?, responseCode: Int?) {
         
         isDataDownloadingNow = false
