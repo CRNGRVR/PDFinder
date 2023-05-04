@@ -81,6 +81,14 @@ struct ScanView: View {
                     .padding(.top, 20)
             }
             
+            if scanVM.isDataDownloadingNow{
+                Button(action: {scanVM.cancelReq()}, label: {
+                    Text("Отмена")
+                        .foregroundColor(Color.red)
+                        .padding(.top, 20)
+                })
+            }
+            
             Spacer()
             Spacer()
         }

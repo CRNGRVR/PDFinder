@@ -24,13 +24,27 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
     //  Класс, реагирующий на попадание кода в камеру
     @Published var codeDelegate = CodeDelegate()
     
+    
+    //  Класс, ответственный за работу с сервером
     @Published var requestManager = RequestManager()
+    
+    //  Загрузилось ли. Для отображения индикации
+    @Published var isDataDownloadingNow = false
+    
+    //  Доля загруженного. Для прогрессбара
+    @Published var progress: Double?
+    
+    //  Свойство равно true, когда завершение запроса инициировал
+    //  пользователь. В таком случае не нужно показывать сообщение об
+    //  ошибке.
+    var isCanceledByUser = false
+    
     
     //  Ориентация экрана. Используется для перерисовки слоя камеры
     //  в соответствии ориентации
     @Published var orientation: UIDeviceOrientation = UIDevice.current.orientation
 
-    
+    //  Показан или скрыт лист настроек
     @Published var isShowSettingsSheet = false {
         
         //  Запуск сессии камеры, когда экран настроек убран
@@ -47,9 +61,6 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
     }
     
     
-    @Published var isDataDownloadingNow = false
-    @Published var progress: Double?
-    
     init(nav: NavVM){
         
         self.nav = nav
@@ -57,9 +68,8 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
         nav.lastscreen = "scan"
         nav.isFileFromDB = false
         
-        //  Для вызова местных методов из CodeDelegate
+        //  Для вызова местных методов из делегатов
         codeDelegate.scanVM = self
-        
         requestManager.scanVM = self
         
         setUp()
@@ -121,7 +131,7 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
         
         //  Выключение камеры
         session.stopRunning()
-                
+
         requestManager.requestFile(code)
     
         //  Раньше здесь был переход
@@ -133,6 +143,7 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
         
         isDataDownloadingNow = false
         progress = nil
+        
         
         if responseCode == 200 && data != nil{
             
@@ -150,11 +161,21 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
         }
         else{
             
-            msg = "Ошибка сети или сервера"
-            isShow = true
+            if !isCanceledByUser{
+                msg = "Ошибка сети или сервера"
+                isShow = true
+            }
             
+            isCanceledByUser = false
             startCameraSession()
         }
+    }
+    
+    //  Отмена запроса может понадобиться, если сервер выбран неправильно
+    //  Ведь тайм-аут у AF около минуты
+    func cancelReq(){
+        isCanceledByUser = true
+        requestManager.calcelRequest()
     }
     
     func goToList(){
@@ -164,6 +185,7 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
     }
     
     func showSettings(){
+        
         isShowSettingsSheet = true
         session.stopRunning()
     }

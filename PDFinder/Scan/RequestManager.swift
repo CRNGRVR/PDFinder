@@ -9,15 +9,15 @@ import Foundation
 import Alamofire
 
 class RequestManager{
-    
+
     var scanVM: RequestManagerInteraction?
     
     var currentDocumentIdentifire: UUID?
-    
-    
+
+
     //  Запрос данных с сервера
     func requestFile(_ code: String?){
-        
+
         AF
             .download("\(UD.shared.getURL())/\(code ?? "0")")
             .responseData{ resp in
@@ -39,5 +39,11 @@ class RequestManager{
                 self.scanVM?.progress = progress.fractionCompleted
             }
     }
-    
+
+
+    //  Отмена запроса данных
+    //  Будет доступна пользователю по нажатию кнопки
+    func calcelRequest(){
+        AF.cancelAllRequests()
+    }
 }
