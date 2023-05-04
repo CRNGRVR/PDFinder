@@ -44,6 +44,7 @@ struct CD{
         newItem.id = UUID()
         newItem.name = name
         newItem.data = data
+        newItem.date = Date()
         
         save()
         

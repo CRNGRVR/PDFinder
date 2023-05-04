@@ -22,7 +22,7 @@ struct ScanView: View {
             
             HStack{
                 Text("Поместите штрих-код в область сканнера")
-                    .font(.system(size: 24, weight: .semibold))
+                    .font(.system(size: 24, weight: .heavy))
                     .padding(.leading, 20)
                 
                 Spacer()
@@ -42,7 +42,7 @@ struct ScanView: View {
                     Text("Перейти к ранее загруженным\nдокументам")
                         .multilineTextAlignment(.leading)
                     
-                        .font(.system(size: 14))
+                        .font(.system(size: 16, weight: .medium))
                         .foregroundColor(Color.blue)
                 })
                 .padding(.leading, 20)

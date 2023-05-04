@@ -20,7 +20,7 @@ struct ListDocsView: View {
             HStack{
                 Text("Архив")
                     .foregroundColor(Color.white)
-                    .font(.system(size: 24, weight: .semibold))
+                    .font(.system(size: 24, weight: .heavy))
                     .padding(.leading, 20)
                 
                 Spacer()
@@ -37,10 +37,13 @@ struct ListDocsView: View {
                 VStack(spacing: 10){
                     
                     ForEach(listDocsVM.list){ item in
-                        element(listDocsVM: listDocsVM, id: item.id!, name: item.name ?? "")
+                        element(listDocsVM: listDocsVM, id: item.id!, name: item.name ?? "", date: item.date!)
                     }
                 }
             }
+        }
+        .onAppear{
+            listDocsVM.onScreenLoaded()
         }
     }
 }
@@ -56,21 +59,37 @@ struct element: View{
     //  Фактический номер документа
     let name: String
     
+    //  Дата поиска
+    let date: Date
+    
     var body: some View{
         
         ZStack{
             Color("closeBlack")
                 .cornerRadius(8)
             
-            HStack{
-                Text(name)
-                    .foregroundColor(Color.white)
-                    .padding(.leading, 20)
+            VStack{
+                HStack{
+                    Text(name)
+                        .foregroundColor(Color.white)
+                        .font(.system(size: 20, weight: .semibold))
+                        .padding(.leading, 20)
+                    
+                    Spacer()
+                }
+                .padding(.bottom, 1)
                 
-                Spacer()
+                HStack{
+                    Text(listDocsVM.format(date: date))
+                        .foregroundColor(Color.gray)
+                        .font(.system(size: 13))
+                        .padding(.leading, 20)
+                    
+                    Spacer()
+                }
             }
         }
-        .frame(maxWidth: .infinity, idealHeight: 50)
+        .frame(maxWidth: .infinity, idealHeight: 80)
         .padding(.leading, 20)
         .padding(.trailing, 20)
         .onTapGesture {

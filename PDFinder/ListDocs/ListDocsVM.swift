@@ -13,10 +13,18 @@ class ListDocsVM: ObservableObject{
     
     @Published var list: [Document] = []
     
+    //  Парсер дат
+    let dateFormatter = DateFormatter()
+    
     init(nav: NavVM){
         
         self.nav = nav
         nav.lastscreen = "list"
+        
+        dateFormatterInit()
+    }
+    
+    func onScreenLoaded(){
         list = CD.shared.getList()
     }
     
@@ -36,5 +44,17 @@ class ListDocsVM: ObservableObject{
     
     func goToScan(){
         nav.currentScreen = "scan"
+    }
+    
+    
+    func dateFormatterInit(){
+        
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        dateFormatter.locale = Locale(identifier: "ru")
+    }
+    
+    func format(date: Date) -> String{
+        return dateFormatter.string(from: date)
     }
 }
