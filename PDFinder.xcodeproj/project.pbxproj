@@ -402,6 +402,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PDFinder/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Камера нужна для считывания штрих-кодов";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Разрешение нужно для поиска файлов на выбранном сервере";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -434,6 +435,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PDFinder/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Камера нужна для считывания штрих-кодов";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Разрешение нужно для поиска файлов на выбранном сервере";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

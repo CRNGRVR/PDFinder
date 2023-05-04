@@ -37,9 +37,9 @@ class SettingsVM: ObservableObject{
 
     func clickClear(){
         
-        CD.shared.deleteAll()
-        
         memoryWithDescr = "Перерасчёт..."
+        
+        CD.shared.deleteAll()
         calculateMemoryInBackground()
     }
     

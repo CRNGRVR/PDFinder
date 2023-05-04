@@ -30,7 +30,7 @@ struct ScanView: View {
                 Button(action: {scanVM.showSettings()}, label: {
                     Image(systemName: "gearshape")
                         .foregroundColor(Color.blue)
-                        .font(.system(size: 20))
+                        .font(.system(size: 25))
                 })
                 .padding(.trailing, 20)
             }

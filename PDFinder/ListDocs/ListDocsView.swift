@@ -25,13 +25,16 @@ struct ListDocsView: View {
                 
                 Spacer()
                 
-                Button(action: {listDocsVM.goToScan()}, label: {Image(systemName: "camera")})
+                Button(action: {listDocsVM.goToScan()}, label: {
+                    Image(systemName: "camera")
+                        .font(.system(size: 25))
+                })
                     .padding(.trailing, 20)
             }
             .padding(.top, 40)
             
             ScrollView(.vertical){
-                VStack{
+                VStack(spacing: 10){
                     
                     ForEach(listDocsVM.list){ item in
                         element(listDocsVM: listDocsVM, id: item.id!, name: item.name ?? "")
@@ -57,7 +60,7 @@ struct element: View{
         
         ZStack{
             Color("closeBlack")
-                .cornerRadius(4)
+                .cornerRadius(8)
             
             HStack{
                 Text(name)

@@ -25,11 +25,12 @@ struct SettingsView: View {
                 Spacer()
             }
             .padding(.top, 20)
+            .padding(.bottom, 10)
             
             
             ZStack{
                 Color("closeBlack")
-                    .cornerRadius(4)
+                    .cornerRadius(8)
                 
                 VStack{
                     HStack{
@@ -61,11 +62,11 @@ struct SettingsView: View {
             .frame(maxWidth: .infinity, maxHeight: 250)
             .padding(.leading, 20)
             .padding(.trailing, 20)
-            .padding(.bottom, 15)
+            .padding(.bottom, 5)
             
             
             DocSpaceCard(memory: settingsVM.memoryWithDescr)
-                .padding(.bottom, 15)
+                .padding(.bottom, 5)
             
             DeleteButton(settingsVM: settingsVM)
             
@@ -83,7 +84,7 @@ struct DocSpaceCard: View {
         
         ZStack{
             Color("closeBlack")
-                .cornerRadius(4)
+                .cornerRadius(8)
             
             HStack{
                 
@@ -113,7 +114,7 @@ struct DeleteButton: View{
         
         ZStack{
             Color("closeBlack")
-                .cornerRadius(4)
+                .cornerRadius(8)
             
             HStack{
                 

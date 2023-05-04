@@ -14,7 +14,7 @@ class RequestManager{
     
     var currentDocumentIdentifire: UUID?
 
-
+    
     //  Запрос данных с сервера
     func requestFile(_ code: String?){
 

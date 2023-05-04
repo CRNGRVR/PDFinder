@@ -159,6 +159,13 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
             
             startCameraSession()
         }
+        else if UD.shared.getURL() == ""{
+            
+            msg = "Введите адрес сервера в настройках"
+            isShow = true
+            
+            startCameraSession()
+        }
         else{
             
             if !isCanceledByUser{
