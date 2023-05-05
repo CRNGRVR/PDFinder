@@ -33,7 +33,7 @@ struct SettingsView: View {
                 ModeSelectorView()
                     .padding(.bottom, 5)
                 
-                PathSelector(settingsVM: settingsVM)
+                PathSelectorView()
                     .padding(.bottom, 5)
                 
                 DocSpaceCard(memory: settingsVM.memoryWithDescr)
@@ -43,51 +43,6 @@ struct SettingsView: View {
                     .padding(.bottom, 10)
             }
         }
-    }
-}
-
-
-
-struct PathSelector: View{
-    
-    @ObservedObject var settingsVM: SettingsVM
-    
-    var body: some View{
-        ZStack{
-            Color("closeBlack")
-                .cornerRadius(8)
-            
-            VStack{
-                HStack{
-                    
-                    Image(systemName: "globe")
-                        .foregroundColor(Color.blue)
-                    
-                    Text("Адрес сервера")
-                    
-                    Spacer()
-                }
-                .padding(.top, 15)
-                
-                Spacer()
-            }
-            .padding(.leading, 15)
-            .padding(.trailing, 15)
-            
-            
-            HStack{
-                
-                TextField("Пример: https://192.168.0.0:3000", text: $settingsVM.currentPath)
-                    //.keyboardType(.numberPad)
-                Text("/Номер")
-            }
-            .padding(.leading, 15)
-            .padding(.trailing, 15)
-            
-        }
-        .frame(maxWidth: .infinity, idealHeight: 250)
-        .padding(.leading, 20)
-        .padding(.trailing, 20)
     }
 }
 

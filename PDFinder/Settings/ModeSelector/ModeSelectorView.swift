@@ -36,14 +36,20 @@ struct ModeSelectorView: View{
                     
                     ModeButton(isSelected: modeSelectorVM.isSelected[0], text: "Всегда\nспрашивать", nameImage: "questionmark.folder", action: modeSelectorVM.setModeQestion)
                     
+                    Spacer()
+                    
                     ModeButton(isSelected: modeSelectorVM.isSelected[1], text: "Локальный\nпоиск", nameImage: "internaldrive", action: modeSelectorVM.setModeFindPriority)
+                    
+                    Spacer()
                     
                     ModeButton(isSelected: modeSelectorVM.isSelected[2], text: "Всегда\nсохранять", nameImage: "doc.on.doc", action: modeSelectorVM.setModeDownload)
                     
+                    Spacer()
+                    
                     ModeButton(isSelected: modeSelectorVM.isSelected[3], text: "Заменять\nна новый", nameImage: "arrow.triangle.2.circlepath.doc.on.clipboard", action: modeSelectorVM.setModeReplace)
                 }
-                .padding(.leading, 20)
-                .padding(.trailing, 20)
+                .padding(.leading, 15)
+                .padding(.trailing, 15)
                 .padding(.top, 10)
                 
                 Spacer()

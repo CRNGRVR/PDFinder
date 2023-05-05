@@ -24,6 +24,9 @@
 		2C8D4C3329FBB19F00408309 /* RequestManagerInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D4C3229FBB19F00408309 /* RequestManagerInteraction.swift */; };
 		2C9904222A049DB80045B97C /* ModeSelectorVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9904212A049DB80045B97C /* ModeSelectorVM.swift */; };
 		2C9904262A04A0C90045B97C /* ModeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9904252A04A0C90045B97C /* ModeSelectorView.swift */; };
+		2C99042A2A04C6CF0045B97C /* PathSelectorVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9904292A04C6CF0045B97C /* PathSelectorVM.swift */; };
+		2C99042C2A04C6DC0045B97C /* PathSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C99042B2A04C6DC0045B97C /* PathSelectorView.swift */; };
+		2C99042E2A04C9770045B97C /* PathModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C99042D2A04C9770045B97C /* PathModel.swift */; };
 		2CAB697C29EC63F10053B39F /* BarcodeInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAB697B29EC63F10053B39F /* BarcodeInteraction.swift */; };
 		2CB09F3C29FD4BA30028DBAB /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB09F3B29FD4BA30028DBAB /* ActivityIndicator.swift */; };
 		2CB09F3E29FD6C190028DBAB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CB09F3D29FD6C190028DBAB /* Launch Screen.storyboard */; };
@@ -56,6 +59,9 @@
 		2C8D4C3229FBB19F00408309 /* RequestManagerInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManagerInteraction.swift; sourceTree = "<group>"; };
 		2C9904212A049DB80045B97C /* ModeSelectorVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectorVM.swift; sourceTree = "<group>"; };
 		2C9904252A04A0C90045B97C /* ModeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectorView.swift; sourceTree = "<group>"; };
+		2C9904292A04C6CF0045B97C /* PathSelectorVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathSelectorVM.swift; sourceTree = "<group>"; };
+		2C99042B2A04C6DC0045B97C /* PathSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathSelectorView.swift; sourceTree = "<group>"; };
+		2C99042D2A04C9770045B97C /* PathModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathModel.swift; sourceTree = "<group>"; };
 		2CAB697B29EC63F10053B39F /* BarcodeInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeInteraction.swift; sourceTree = "<group>"; };
 		2CB09F3B29FD4BA30028DBAB /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		2CB09F3D29FD6C190028DBAB /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -156,6 +162,25 @@
 			path = ListDocs;
 			sourceTree = "<group>";
 		};
+		2C9904272A04BEE40045B97C /* ModeSelector */ = {
+			isa = PBXGroup;
+			children = (
+				2C9904212A049DB80045B97C /* ModeSelectorVM.swift */,
+				2C9904252A04A0C90045B97C /* ModeSelectorView.swift */,
+			);
+			path = ModeSelector;
+			sourceTree = "<group>";
+		};
+		2C9904282A04C6B60045B97C /* PathSelector */ = {
+			isa = PBXGroup;
+			children = (
+				2C9904292A04C6CF0045B97C /* PathSelectorVM.swift */,
+				2C99042B2A04C6DC0045B97C /* PathSelectorView.swift */,
+				2C99042D2A04C9770045B97C /* PathModel.swift */,
+			);
+			path = PathSelector;
+			sourceTree = "<group>";
+		};
 		2CD9987F29ED1D3D009DCA26 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,10 +194,10 @@
 		2CEBFD7829F92AF700DEBEC0 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				2C9904282A04C6B60045B97C /* PathSelector */,
+				2C9904272A04BEE40045B97C /* ModeSelector */,
 				2CEBFD7929F92B0D00DEBEC0 /* SettingsVM.swift */,
 				2CEBFD7B29F92B1900DEBEC0 /* SettingsView.swift */,
-				2C9904212A049DB80045B97C /* ModeSelectorVM.swift */,
-				2C9904252A04A0C90045B97C /* ModeSelectorView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -262,12 +287,15 @@
 				2CB09F3C29FD4BA30028DBAB /* ActivityIndicator.swift in Sources */,
 				2CD9988329ED1D53009DCA26 /* PdfView.swift in Sources */,
 				2C08522529EAC47500A11890 /* CameraView.swift in Sources */,
+				2C99042A2A04C6CF0045B97C /* PathSelectorVM.swift in Sources */,
 				2CEBFD7C29F92B1900DEBEC0 /* SettingsView.swift in Sources */,
 				2C1287EA29F6EAA30021EC65 /* ListDocsView.swift in Sources */,
 				2C8D4C3129FBAC5D00408309 /* RequestManager.swift in Sources */,
 				2CD9988129ED1D4C009DCA26 /* PdfVM.swift in Sources */,
 				2C08521029EA874C00A11890 /* ParentView.swift in Sources */,
 				2C1287EF29F7C4660021EC65 /* CD.swift in Sources */,
+				2C99042C2A04C6DC0045B97C /* PathSelectorView.swift in Sources */,
+				2C99042E2A04C9770045B97C /* PathModel.swift in Sources */,
 				2C1287ED29F7C4100021EC65 /* DocsModel.xcdatamodeld in Sources */,
 				2C08520E29EA874C00A11890 /* PDFinderApp.swift in Sources */,
 				2C9904262A04A0C90045B97C /* ModeSelectorView.swift in Sources */,

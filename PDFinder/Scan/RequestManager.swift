@@ -19,7 +19,8 @@ class RequestManager{
     func requestFile(_ code: String?){
 
         AF
-            .download("\(UD.shared.getURL())/\(code ?? "0")")
+            //.download("\(UD.shared.getURL())/\(code ?? "0")")
+            .download("\(UD.shared.getStringURL())\(code ?? "0")")
             .responseData{ resp in
                 
                 if let data = resp.value{
@@ -41,10 +42,12 @@ class RequestManager{
     }
     
     
+    //  Функция для дубликатной опции "Заменить"
     func requestFileAndReplace(_ code: String?){
         
         AF
-            .download("\(UD.shared.getURL())/\(code ?? "0")")
+            //.download("\(UD.shared.getURL())/\(code ?? "0")")
+            .download("\(UD.shared.getStringURL())\(code ?? "0")")
             .responseData{ resp in
                 
                 if let data = resp.value{

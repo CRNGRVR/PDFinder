@@ -14,15 +14,18 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
     //  Навигация по приложению
     @Published var nav: NavVM
     
+    
+    //  Для камеры
     @Published var session: AVCaptureSession = .init()
     @Published var codeOutput: AVCaptureMetadataOutput = .init()
+    
+    //  Класс, реагирующий на попадание кода в камеру
+    @Published var codeDelegate = CodeDelegate()
+    
     
     //  Для сообщения о возможной ошибке
     @Published var isShow: Bool = false
     @Published var msg: String = ""
-    
-    //  Класс, реагирующий на попадание кода в камеру
-    @Published var codeDelegate = CodeDelegate()
     
     
     //  Класс, ответственный за работу с сервером
@@ -60,9 +63,9 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
         }
     }
     
-    
     @Published var publicCode: String = ""
     
+    //  Алёрт с выбором действия дубликата
     @Published var isPresentChoose = false
     
     init(nav: NavVM){
@@ -127,6 +130,13 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
         }
     }
     
+    func startCameraSession(){
+        DispatchQueue.global(qos: .default).async {
+            self.session.startRunning()
+        }
+    }
+    
+    
     
     //  Вызывается из CodeDelegate, когда код прочитан
     func readed(code: String) {
@@ -138,34 +148,30 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
 
         if !CD.shared.checkIsExisted(name: code){
             
+            //  Когда файл не имеет дубликата в хранилище - скачивается
             isDataDownloadingNow = true
             requestManager.requestFile(code)
         }
         else{
             
-            
+            //  Когда найден дубликат - выбирается опция
             switch UD.shared.getSelectedMode(){
 
             case "question":
                 isPresentChoose = true
                 
             case "find":
-                nav.pdfAsData = CD.shared.find(name: code)?.data
-                nav.currentScreen = "pdf"
+                find(code: code)
             
             case "replace":
-                isDataDownloadingNow = true
-                requestManager.requestFileAndReplace(code)
+                replace(code: code)
 
             case "download":
-                isDataDownloadingNow = true
-                requestManager.requestFile(code)
+                download(code: code)
 
             default:
                 isPresentChoose = true
             }
-            
-            
             
         }
  
@@ -193,13 +199,13 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
             
             startCameraSession()
         }
-        else if UD.shared.getURL() == ""{
-            
-            msg = "Введите адрес сервера в настройках"
-            isShow = true
-            
-            startCameraSession()
-        }
+//        else if UD.shared.getURL() == ""{
+//
+//            msg = "Введите адрес сервера в настройках"
+//            isShow = true
+//
+//            startCameraSession()
+//        }
         else{
             
             if !isCanceledByUser{
@@ -219,6 +225,7 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
         requestManager.calcelRequest()
     }
     
+    
     func goToList(){
         
         nav.currentScreen = "list"
@@ -232,30 +239,20 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
     }
     
     
-    func startCameraSession(){
-        DispatchQueue.global(qos: .default).async {
-            self.session.startRunning()
-        }
-    }
     
-    
-    
-    
-    
-    func find(){
-        nav.pdfAsData = CD.shared.find(name: publicCode)?.data
+    //  Функции для дубликатов
+    func find(code: String){
+        nav.pdfAsData = CD.shared.find(name: code)?.data
         nav.currentScreen = "pdf"
     }
     
-    func replace(){
+    func replace(code: String){
         isDataDownloadingNow = true
-        requestManager.requestFileAndReplace(publicCode)
-
+        requestManager.requestFileAndReplace(code)
     }
     
-    func download(){
+    func download(code: String){
         isDataDownloadingNow = true
-        requestManager.requestFile(publicCode)
-
+        requestManager.requestFile(code)
     }
 }

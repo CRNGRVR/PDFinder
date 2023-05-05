@@ -9,14 +9,7 @@ import Foundation
 
 class SettingsVM: ObservableObject{
     
-    //  Адрес сервера
-    //  Без пути до документа
-    @Published var currentPath: String {
-
-        didSet{
-            saveURL()
-        }
-    }
+    
     
     //  Количество памяти, занятое документами.
     //  Преобразовывается в строку, содержащую число
@@ -25,16 +18,10 @@ class SettingsVM: ObservableObject{
     
     init(){
         
-        currentPath = UD.shared.getURL()
-        
         memoryWithDescr = "Вычисление..."
         calculateMemoryInBackground()
     }
     
-    func saveURL(){
-        UD.shared.setURL(currentPath)
-    }
-
     func clickClear(){
         
         memoryWithDescr = "Перерасчёт..."
@@ -42,7 +29,6 @@ class SettingsVM: ObservableObject{
         CD.shared.deleteAll()
         calculateMemoryInBackground()
     }
-    
     
     func calculateMemoryInBackground(){
         
@@ -56,7 +42,4 @@ class SettingsVM: ObservableObject{
             self.memoryWithDescr = CD.shared.countOfBytesWithDescr()
         }
     }
-    
-    
-    
 }
