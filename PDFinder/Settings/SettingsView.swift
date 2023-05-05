@@ -28,52 +28,69 @@ struct SettingsView: View {
             .padding(.bottom, 10)
             
             
-            ZStack{
-                Color("closeBlack")
-                    .cornerRadius(8)
+            ScrollView(.vertical, showsIndicators: false){
                 
-                VStack{
-                    HStack{
-                        
-                        Image(systemName: "globe")
-                            .foregroundColor(Color.blue)
-                        
-                        Text("Адрес сервера")
-                        
-                        Spacer()
-                    }
-                    .padding(.top, 15)
-                    
-                    Spacer()
-                }
-                .padding(.leading, 15)
-                .padding(.trailing, 15)
+                ModeSelectorView()
+                    .padding(.bottom, 5)
                 
+                PathSelector(settingsVM: settingsVM)
+                    .padding(.bottom, 5)
                 
-                HStack{
-                    
-                    TextField("Пример: https://192.168.0.0:3000", text: $settingsVM.currentPath)
-                    Text("/Номер")
-                }
-                .padding(.leading, 15)
-                .padding(.trailing, 15)
+                DocSpaceCard(memory: settingsVM.memoryWithDescr)
+                    .padding(.bottom, 5)
                 
+                DeleteButton(settingsVM: settingsVM)
+                    .padding(.bottom, 10)
             }
-            .frame(maxWidth: .infinity, maxHeight: 250)
-            .padding(.leading, 20)
-            .padding(.trailing, 20)
-            .padding(.bottom, 5)
-            
-            
-            DocSpaceCard(memory: settingsVM.memoryWithDescr)
-                .padding(.bottom, 5)
-            
-            DeleteButton(settingsVM: settingsVM)
-            
-            Spacer()
         }
     }
 }
+
+
+
+struct PathSelector: View{
+    
+    @ObservedObject var settingsVM: SettingsVM
+    
+    var body: some View{
+        ZStack{
+            Color("closeBlack")
+                .cornerRadius(8)
+            
+            VStack{
+                HStack{
+                    
+                    Image(systemName: "globe")
+                        .foregroundColor(Color.blue)
+                    
+                    Text("Адрес сервера")
+                    
+                    Spacer()
+                }
+                .padding(.top, 15)
+                
+                Spacer()
+            }
+            .padding(.leading, 15)
+            .padding(.trailing, 15)
+            
+            
+            HStack{
+                
+                TextField("Пример: https://192.168.0.0:3000", text: $settingsVM.currentPath)
+                    //.keyboardType(.numberPad)
+                Text("/Номер")
+            }
+            .padding(.leading, 15)
+            .padding(.trailing, 15)
+            
+        }
+        .frame(maxWidth: .infinity, idealHeight: 250)
+        .padding(.leading, 20)
+        .padding(.trailing, 20)
+    }
+}
+
 
 
 struct DocSpaceCard: View {
@@ -96,11 +113,12 @@ struct DocSpaceCard: View {
                 Spacer()
                 
                 Text(memory)
+                    .foregroundColor(Color.gray)
             }
             .padding(.leading, 15)
             .padding(.trailing, 15)
         }
-        .frame(maxWidth: .infinity, maxHeight: 50)
+        .frame(maxWidth: .infinity, idealHeight: 50)
         .padding(.leading, 20)
         .padding(.trailing, 20)
     }
@@ -127,12 +145,11 @@ struct DeleteButton: View{
                 })
                 
                 Spacer()
-                
             }
             .padding(.leading, 15)
             .padding(.trailing, 15)
         }
-        .frame(maxWidth: .infinity, maxHeight: 50)
+        .frame(maxWidth: .infinity, idealHeight: 50)
         .padding(.leading, 20)
         .padding(.trailing, 20)
     }

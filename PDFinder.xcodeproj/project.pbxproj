@@ -22,6 +22,8 @@
 		2C1287EF29F7C4660021EC65 /* CD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1287EE29F7C4660021EC65 /* CD.swift */; };
 		2C8D4C3129FBAC5D00408309 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D4C3029FBAC5D00408309 /* RequestManager.swift */; };
 		2C8D4C3329FBB19F00408309 /* RequestManagerInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D4C3229FBB19F00408309 /* RequestManagerInteraction.swift */; };
+		2C9904222A049DB80045B97C /* ModeSelectorVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9904212A049DB80045B97C /* ModeSelectorVM.swift */; };
+		2C9904262A04A0C90045B97C /* ModeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9904252A04A0C90045B97C /* ModeSelectorView.swift */; };
 		2CAB697C29EC63F10053B39F /* BarcodeInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAB697B29EC63F10053B39F /* BarcodeInteraction.swift */; };
 		2CB09F3C29FD4BA30028DBAB /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB09F3B29FD4BA30028DBAB /* ActivityIndicator.swift */; };
 		2CB09F3E29FD6C190028DBAB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CB09F3D29FD6C190028DBAB /* Launch Screen.storyboard */; };
@@ -52,6 +54,8 @@
 		2C1287F029F807130021EC65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2C8D4C3029FBAC5D00408309 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		2C8D4C3229FBB19F00408309 /* RequestManagerInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManagerInteraction.swift; sourceTree = "<group>"; };
+		2C9904212A049DB80045B97C /* ModeSelectorVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectorVM.swift; sourceTree = "<group>"; };
+		2C9904252A04A0C90045B97C /* ModeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectorView.swift; sourceTree = "<group>"; };
 		2CAB697B29EC63F10053B39F /* BarcodeInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeInteraction.swift; sourceTree = "<group>"; };
 		2CB09F3B29FD4BA30028DBAB /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		2CB09F3D29FD6C190028DBAB /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -94,12 +98,12 @@
 		2C08520C29EA874C00A11890 /* PDFinder */ = {
 			isa = PBXGroup;
 			children = (
+				2C08521329EA874F00A11890 /* Preview Content */,
 				2C08521129EA874F00A11890 /* Assets.xcassets */,
 				2C1287F029F807130021EC65 /* Info.plist */,
 				2CEBFD7829F92AF700DEBEC0 /* Settings */,
 				2C6FC9F029F6E3E800189E30 /* ListDocs */,
 				2CD9987F29ED1D3D009DCA26 /* Main */,
-				2C08521329EA874F00A11890 /* Preview Content */,
 				2C08521F29EA886F00A11890 /* Scan */,
 				2C08521B29EA876200A11890 /* Common */,
 			);
@@ -167,6 +171,8 @@
 			children = (
 				2CEBFD7929F92B0D00DEBEC0 /* SettingsVM.swift */,
 				2CEBFD7B29F92B1900DEBEC0 /* SettingsView.swift */,
+				2C9904212A049DB80045B97C /* ModeSelectorVM.swift */,
+				2C9904252A04A0C90045B97C /* ModeSelectorView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -250,6 +256,7 @@
 			files = (
 				2C08521D29EA879D00A11890 /* NavVM.swift in Sources */,
 				2C08522329EA895900A11890 /* ScanVM.swift in Sources */,
+				2C9904222A049DB80045B97C /* ModeSelectorVM.swift in Sources */,
 				2CEBFD7E29F9504B00DEBEC0 /* UD.swift in Sources */,
 				2C08522129EA887C00A11890 /* ScanView.swift in Sources */,
 				2CB09F3C29FD4BA30028DBAB /* ActivityIndicator.swift in Sources */,
@@ -263,6 +270,7 @@
 				2C1287EF29F7C4660021EC65 /* CD.swift in Sources */,
 				2C1287ED29F7C4100021EC65 /* DocsModel.xcdatamodeld in Sources */,
 				2C08520E29EA874C00A11890 /* PDFinderApp.swift in Sources */,
+				2C9904262A04A0C90045B97C /* ModeSelectorView.swift in Sources */,
 				2CAB697C29EC63F10053B39F /* BarcodeInteraction.swift in Sources */,
 				2CD9988829ED2D26009DCA26 /* PDFReader.swift in Sources */,
 				2C08522729EB210400A11890 /* CodeDelegate.swift in Sources */,

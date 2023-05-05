@@ -174,4 +174,12 @@ struct CD{
         }
     }
     
+    
+    func reload(item: Document, data: Data){
+        
+        item.setValue(data, forKey: "data")
+        item.setValue(Date(), forKey: "date")
+        
+        save()
+    }
 }

@@ -97,6 +97,11 @@ struct ScanView: View {
         }
         
         .alert(isPresented: $scanVM.isShow, content: {Alert(title: Text(scanVM.msg))})
+        .alert("Найден дубликат. Что делать?", isPresented: $scanVM.isPresentChoose, actions: {
+            Button(action: {scanVM.find()}, label: {Text("Открыть схоранённое")})
+            Button(action: {scanVM.download()}, label: {Text("Скачать")})
+            Button(action: {scanVM.replace()}, label: {Text("Скачать и заменить")})
+        })
         
         .onAppear{
             scanVM.permissionRequestIfNotAuthorized()

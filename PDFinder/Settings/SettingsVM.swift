@@ -52,9 +52,11 @@ class SettingsVM: ObservableObject{
         //
         //  При открытии настроек пользователь не ждёт открытия самих настроек,
         //  а только подгрузки данных в уже появившемся с основного потока окне.
-        DispatchQueue.global(qos: .default).async {
+        DispatchQueue.main.async {
             self.memoryWithDescr = CD.shared.countOfBytesWithDescr()
         }
     }
+    
+    
     
 }

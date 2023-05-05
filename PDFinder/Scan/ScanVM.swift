@@ -61,6 +61,10 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
     }
     
     
+    @Published var publicCode: String = ""
+    
+    @Published var isPresentChoose = false
+    
     init(nav: NavVM){
         
         self.nav = nav
@@ -129,6 +133,8 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
     
         //  Выключение камеры
         session.stopRunning()
+        
+        publicCode = code
 
         if !CD.shared.checkIsExisted(name: code){
             
@@ -137,9 +143,30 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
         }
         else{
             
-            nav.pdfAsData = CD.shared.find(name: code)?.data
-            nav.lastscreen = "scan"
-            nav.currentScreen = "pdf"
+            
+            switch UD.shared.getSelectedMode(){
+
+            case "question":
+                isPresentChoose = true
+                
+            case "find":
+                nav.pdfAsData = CD.shared.find(name: code)?.data
+                nav.currentScreen = "pdf"
+            
+            case "replace":
+                isDataDownloadingNow = true
+                requestManager.requestFileAndReplace(code)
+
+            case "download":
+                isDataDownloadingNow = true
+                requestManager.requestFile(code)
+
+            default:
+                isPresentChoose = true
+            }
+            
+            
+            
         }
  
     }
@@ -211,4 +238,24 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
         }
     }
     
+    
+    
+    
+    
+    func find(){
+        nav.pdfAsData = CD.shared.find(name: publicCode)?.data
+        nav.currentScreen = "pdf"
+    }
+    
+    func replace(){
+        isDataDownloadingNow = true
+        requestManager.requestFileAndReplace(publicCode)
+
+    }
+    
+    func download(){
+        isDataDownloadingNow = true
+        requestManager.requestFile(publicCode)
+
+    }
 }

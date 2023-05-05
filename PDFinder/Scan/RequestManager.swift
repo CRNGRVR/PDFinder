@@ -39,6 +39,31 @@ class RequestManager{
                 self.scanVM?.progress = progress.fractionCompleted
             }
     }
+    
+    
+    func requestFileAndReplace(_ code: String?){
+        
+        AF
+            .download("\(UD.shared.getURL())/\(code ?? "0")")
+            .responseData{ resp in
+                
+                if let data = resp.value{
+                    
+                   
+                    CD.shared.reload(item: CD.shared.find(name: code!)!, data: data)
+                    self.currentDocumentIdentifire = CD.shared.find(name: code!)?.id
+                    
+                    self.scanVM?.onDataReceivedAndLoaded(data: data, responseCode: resp.response?.statusCode)
+                }
+                else{
+                    self.scanVM?.onDataReceivedAndLoaded(data: nil, responseCode: resp.response?.statusCode)
+                }
+            }
+            .downloadProgress{ progress in
+                
+                self.scanVM?.progress = progress.fractionCompleted
+            }
+    }
 
 
     //  Отмена запроса данных
