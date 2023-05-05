@@ -50,7 +50,7 @@ struct UD{
         
         let elements = getElementsURL()
         
-        return "http\(elements.httpOrS ? "s" : "")://\(elements.p1).\(elements.p2).\(elements.p3).\(elements.p4):\(elements.port)/"
+        return "http\(elements.httpOrS ? "" : "s")://\(elements.p1).\(elements.p2).\(elements.p3).\(elements.p4):\(elements.port)/"
     }
     
     
