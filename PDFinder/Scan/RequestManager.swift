@@ -17,6 +17,10 @@ class RequestManager{
     //  Запрос данных с сервера
     func requestFile(_ code: String?){
         
+        
+        print(UD.shared.getStringURL())
+        
+        
         AF
             .download("\(UD.shared.getStringURL())\(code ?? "0")")
             .responseData{ resp in

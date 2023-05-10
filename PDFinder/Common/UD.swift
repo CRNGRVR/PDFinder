@@ -12,6 +12,11 @@ struct UD{
     
     static let shared = UD()
 
+    let keyFullOrByPieces = "fullOrByPieces"    //  true - full
+    
+    //  Ключ полной строки адреса
+    let keyFullURL = "fullURL"
+    
     //  Ключи хранения элементов адреса
     let keyHttpOrS = "httpOrS"
     let keyURL1 = "httpURL1"
@@ -24,10 +29,20 @@ struct UD{
     let keyMode = "mode"
     
     //  Ключ для значения: было ли когда-нибудь запущено приложение
-    let keyIsAppRunnedYet = "isAppRunnedYet"
+    let keyIsAppTryingGetPermission = "isAppRunnedYet"
     
     
-    //  Адрес сервера
+    //  Строка с адресом
+    func setFullURL(url: String){
+        UserDefaults.standard.set(url, forKey: keyFullURL)
+    }
+    
+    func getFullURL() -> String?{
+        return UserDefaults.standard.string(forKey: keyFullURL)
+    }
+    
+    
+    //  Адрес сервера по кусочкам
     func setURL(urlElements: PathElements){
         
         UserDefaults.standard.set(urlElements.httpOrS, forKey: keyHttpOrS)
@@ -52,12 +67,33 @@ struct UD{
         return PathElements(httpOrS: httpOrS, p1: p1 ?? "", p2: p2 ?? "", p3: p3 ?? "", p4: p4 ?? "", port: port ?? "")
     }
     
+    
+    
+    func setFullOrByPieces(isFull: Bool){
+        UserDefaults.standard.set(isFull, forKey: keyFullOrByPieces)
+    }
+    
+    func getFullOrByPieces() -> Bool{
+        return UserDefaults.standard.bool(forKey: keyFullOrByPieces)
+    }
+    
+    
     //  Итоговая строка для обращения к AF
     func getStringURL() -> String{
         
-        let elements = getElementsURL()
-        
-        return "http\(elements.httpOrS ? "" : "s")://\(elements.p1).\(elements.p2).\(elements.p3).\(elements.p4):\(elements.port)/"
+        if getFullOrByPieces(){
+            
+            //  Когда адрес целиком
+            return "\(getFullURL() ?? "")/"
+        }
+        else{
+            
+            //  Когда адрес по кусочкам
+            
+            let elements = getElementsURL()
+            
+            return "http\(elements.httpOrS ? "" : "s")://\(elements.p1).\(elements.p2).\(elements.p3).\(elements.p4):\(elements.port)/"
+        }
     }
     
     
@@ -84,16 +120,17 @@ struct UD{
     }
     
     
+    
     //  Заполняется, когда происходит запрос на разрешение
     func setAppTryungGetPermission(){
-        UserDefaults.standard.set(true, forKey: keyIsAppRunnedYet)
+        UserDefaults.standard.set(true, forKey: keyIsAppTryingGetPermission)
     }
     
     func resetAppTryingGetPermission(){
-        UserDefaults.standard.set(false, forKey: keyIsAppRunnedYet)
+        UserDefaults.standard.set(false, forKey: keyIsAppTryingGetPermission)
     }
     
     func isAppTryingGetPermission() -> Bool{
-        return UserDefaults.standard.bool(forKey: keyIsAppRunnedYet)
+        return UserDefaults.standard.bool(forKey: keyIsAppTryingGetPermission)
     }
 }

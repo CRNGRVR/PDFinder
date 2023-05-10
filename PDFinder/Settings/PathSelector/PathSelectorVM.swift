@@ -36,6 +36,27 @@ class PathSelectorVM: ObservableObject{
     }
     
     
+    
+    
+    @Published var isShowStandartField = false{
+        didSet{
+            if isShowStandartField{
+                UD.shared.setFullOrByPieces(isFull: true)
+            }
+            else
+            {
+                UD.shared.setFullOrByPieces(isFull: false)
+            }
+        }
+    }
+    
+    
+    @Published var fullText = ""{
+        didSet{
+            saveURL()
+        }
+    }
+    
     init(){
         
         let elements = UD.shared.getElementsURL()
@@ -49,18 +70,27 @@ class PathSelectorVM: ObservableObject{
             selection = [false, true]
         }
         
-        
         first = elements.p1
         second = elements.p2
         third = elements.p3
         four = elements.p4
         port = elements.port
+        
+        
+        fullText = UD.shared.getFullURL() ?? ""
+        
+        isShowStandartField = UD.shared.getFullOrByPieces()
     }
     
     
     func saveURL(){
         
-        UD.shared.setURL(urlElements: PathElements(httpOrS: httpOrS, p1: first, p2: second, p3: third, p4: four, port: port))
+        if isShowStandartField{
+            UD.shared.setFullURL(url: fullText)
+        }
+        else{
+            UD.shared.setURL(urlElements: PathElements(httpOrS: httpOrS, p1: first, p2: second, p3: third, p4: four, port: port))
+        }
         
         UD.shared.resetAppTryingGetPermission()
     }
@@ -74,5 +104,9 @@ class PathSelectorVM: ObservableObject{
     func selectHttps(){
         httpOrS = false
         selection = [false, true]
+    }
+    
+    func clickPort(){
+        isPort80.toggle()
     }
 }
