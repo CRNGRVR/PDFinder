@@ -107,7 +107,7 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
     func setUp(){
         
         //  Поиск камеры
-        let device = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .back).devices[0]
+        let device = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera, .builtInDualCamera, .builtInDualWideCamera, .builtInLiDARDepthCamera, .builtInTelephotoCamera, .builtInTripleCamera, .builtInUltraWideCamera, .builtInTrueDepthCamera], mediaType: .video, position: .back).devices[0]
 
         do{
             
@@ -199,13 +199,6 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
             
             startCameraSession()
         }
-//        else if UD.shared.getURL() == ""{
-//
-//            msg = "Введите адрес сервера в настройках"
-//            isShow = true
-//
-//            startCameraSession()
-//        }
         else{
             
             if !isCanceledByUser{
@@ -255,4 +248,18 @@ class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{
         isDataDownloadingNow = true
         requestManager.requestFile(code)
     }
+    
+    
+    //  При скрытии настроек если приложение запущено
+    //  впервые, будет отправлен запрос для получения
+    //  разрешения на поиск устройств в локальной сети
+    func onDissmissSettings(){
+        
+        if !UD.shared.isAppTryingGetPermission(){
+            
+            requestManager.firstRequest()
+            UD.shared.setAppTryungGetPermission()
+        }
+    }
+    
 }

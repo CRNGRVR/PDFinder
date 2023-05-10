@@ -122,7 +122,6 @@ struct CD{
     //  Вызывается из настроек
     func deleteAll(){
         
-        //  Так должно лучше работать
         let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "Document")
         let deleteReq = NSBatchDeleteRequest(fetchRequest: fetchReq)
         
@@ -175,6 +174,7 @@ struct CD{
     }
     
     
+    //  Перезапись
     func reload(item: Document, data: Data){
         
         item.setValue(data, forKey: "data")

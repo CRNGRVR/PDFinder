@@ -92,7 +92,7 @@ struct ScanView: View {
             Spacer()
             Spacer()
         }
-        .sheet(isPresented: $scanVM.isShowSettingsSheet){
+        .sheet(isPresented: $scanVM.isShowSettingsSheet, onDismiss: {scanVM.onDissmissSettings()}){
             SettingsView()
         }
         

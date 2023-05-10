@@ -76,7 +76,11 @@ struct PathSelectorView: View{
                         .cornerRadius(10)
                     }
                     
-                    Toggle(isOn: $pathSelectorVM.isPort80, label: {Text("Использовать стандартный порт")})
+                    VStack{
+                        Toggle(isOn: $pathSelectorVM.isPort80, label: {Text("Использовать стандартный порт")})
+                        
+                        Spacer()
+                    }
                 }
                 
                 

@@ -56,11 +56,9 @@ class ModeSelectorVM: ObservableObject {
             currentDescription = modeDescriptions[2]
             
         
-            
         default:
             isSelected = [true, false, false, false]
             currentDescription = modeDescriptions[0]
-        
         }
     }
     
@@ -70,24 +68,28 @@ class ModeSelectorVM: ObservableObject {
         
         isSelected = [true, false, false, false]
         currentDescription = modeDescriptions[0]
+        
         UD.shared.setAlwaysQuestion()
     }
     
     func setModeFindPriority(){
         isSelected = [false, true, false, false]
         currentDescription = modeDescriptions[1]
+        
         UD.shared.setAlwaysFindInDbOrLoad()
     }
     
     func setModeReplace(){
         isSelected = [false, false, false, true]
         currentDescription = modeDescriptions[2]
+        
         UD.shared.setAlwaysReplace()
     }
     
     func setModeDownload(){
         isSelected = [false, false, true, false]
         currentDescription = modeDescriptions[3]
+        
         UD.shared.setAlwaysDownload()
     }
 }

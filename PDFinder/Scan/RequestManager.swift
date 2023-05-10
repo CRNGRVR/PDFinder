@@ -13,15 +13,11 @@ class RequestManager{
     var scanVM: RequestManagerInteraction?
     
     var currentDocumentIdentifire: UUID?
-
     
     //  Запрос данных с сервера
     func requestFile(_ code: String?){
-
-        print("\(UD.shared.getStringURL())\(code ?? "0")")
         
         AF
-            //.download("\(UD.shared.getURL())/\(code ?? "0")")
             .download("\(UD.shared.getStringURL())\(code ?? "0")")
             .responseData{ resp in
                 
@@ -48,13 +44,11 @@ class RequestManager{
     func requestFileAndReplace(_ code: String?){
         
         AF
-            //.download("\(UD.shared.getURL())/\(code ?? "0")")
             .download("\(UD.shared.getStringURL())\(code ?? "0")")
             .responseData{ resp in
                 
                 if let data = resp.value{
                     
-                   
                     CD.shared.reload(item: CD.shared.find(name: code!)!, data: data)
                     self.currentDocumentIdentifire = CD.shared.find(name: code!)?.id
                     
@@ -76,4 +70,14 @@ class RequestManager{
     func calcelRequest(){
         AF.cancelAllRequests()
     }
+    
+    
+    
+    func firstRequest(){
+    
+        AF
+            .request("\(UD.shared.getStringURL())")
+            .response{_ in}
+    }
+    
 }

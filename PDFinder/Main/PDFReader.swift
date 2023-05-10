@@ -21,6 +21,8 @@ struct PDFReader: UIViewRepresentable{
             pdfView.document = PDFDocument(data: data)
         }
         
+        pdfView.scaleFactor = 0.6
+        
         return pdfView
     }
     
