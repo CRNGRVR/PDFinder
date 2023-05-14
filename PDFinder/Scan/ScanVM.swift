@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import AVFoundation
 import AVKit
 
 class ScanVM: ObservableObject, BarcodeInteraction, RequestManagerInteraction{

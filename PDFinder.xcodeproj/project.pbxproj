@@ -54,7 +54,7 @@
 		2C1287E929F6EAA30021EC65 /* ListDocsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDocsView.swift; sourceTree = "<group>"; };
 		2C1287EC29F7C4100021EC65 /* DocsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DocsModel.xcdatamodel; sourceTree = "<group>"; };
 		2C1287EE29F7C4660021EC65 /* CD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CD.swift; sourceTree = "<group>"; };
-		2C1287F029F807130021EC65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2C310F322A0E2A1B00AB6E43 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		2C8D4C3029FBAC5D00408309 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		2C8D4C3229FBB19F00408309 /* RequestManagerInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManagerInteraction.swift; sourceTree = "<group>"; };
 		2C9904212A049DB80045B97C /* ModeSelectorVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectorVM.swift; sourceTree = "<group>"; };
@@ -88,6 +88,7 @@
 		2C08520129EA874C00A11890 = {
 			isa = PBXGroup;
 			children = (
+				2C310F322A0E2A1B00AB6E43 /* README.md */,
 				2C08520C29EA874C00A11890 /* PDFinder */,
 				2C08520B29EA874C00A11890 /* Products */,
 			);
@@ -106,7 +107,6 @@
 			children = (
 				2C08521329EA874F00A11890 /* Preview Content */,
 				2C08521129EA874F00A11890 /* Assets.xcassets */,
-				2C1287F029F807130021EC65 /* Info.plist */,
 				2CEBFD7829F92AF700DEBEC0 /* Settings */,
 				2C6FC9F029F6E3E800189E30 /* ListDocs */,
 				2CD9987F29ED1D3D009DCA26 /* Main */,
@@ -436,7 +436,7 @@
 				DEVELOPMENT_TEAM = N5Q5NU635P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PDFinder/Info.plist;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Камера нужна для считывания штрих-кодов";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Разрешение нужно для поиска файлов на выбранном сервере";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -469,7 +469,7 @@
 				DEVELOPMENT_TEAM = N5Q5NU635P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PDFinder/Info.plist;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Камера нужна для считывания штрих-кодов";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Разрешение нужно для поиска файлов на выбранном сервере";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
